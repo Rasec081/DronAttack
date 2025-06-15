@@ -1,0 +1,13 @@
+com\mycompany\proyecto3\Proyecto3.class
+Pantallas\PantallaCliente.class
+Cliente\Cliente.class
+Servidor\ConexionServidorThread.class
+Configuracion\ConfiguracionJuego.class
+Ejecutables\ClienteEjecutable.class
+Pantallas\PantallaServidor.class
+Servidor\Servidor.class
+Ejecutables\ServidorEjecutable.class
+Cliente\ThreadCliente.class
+Servidor\ThreadServidor.class
+Mensajes\Mensaje.class
+Mensajes\TipoMensaje.class
