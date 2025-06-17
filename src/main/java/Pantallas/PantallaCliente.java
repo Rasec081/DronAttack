@@ -15,6 +15,7 @@ public class PantallaCliente extends javax.swing.JFrame {
      */
     public PantallaCliente() {
         initComponents();
+        setTitle("Cliente");
     }
 
     /**

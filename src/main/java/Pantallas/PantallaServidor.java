@@ -15,6 +15,7 @@ public class PantallaServidor extends javax.swing.JFrame {
      */
     public PantallaServidor() {
         initComponents();
+        setTitle("Servidor");
     }
 
     /**
