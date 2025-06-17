@@ -7,6 +7,7 @@ package Servidor;
 import Mensajes.Mensaje;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 
 
@@ -24,6 +25,7 @@ public class Servidor {
     public Servidor(){
         this.clientesAceptados = new ArrayList<>();
         conectar();
+        aceptarClientes();
     }
 
     public ServerSocket getServidor() {
@@ -61,5 +63,23 @@ public class Servidor {
                 }
             }
         }
+    }
+    
+    public void aceptarClientes() {
+        new Thread(() -> {
+            try {
+                while (clientesAceptados.size() < 2) {
+                    Socket socketCliente = servidor.accept();
+                    System.out.println("[SERVIDOR] Cliente conectado desde " + socketCliente.getInetAddress());
+
+                    ThreadServidor nuevoCliente = new ThreadServidor(socketCliente, this);
+                    clientesAceptados.add(nuevoCliente);
+                    nuevoCliente.start();
+                }
+                System.out.println("[SERVIDOR] Se conectaron los 2 jugadores. Inicia la partida.");
+            } catch (IOException e) {
+                System.out.println("[ERROR] Error al aceptar clientes: " + e.getMessage());
+            }
+        }).start();
     }
 }
