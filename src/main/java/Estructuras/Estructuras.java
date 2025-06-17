@@ -17,23 +17,23 @@ a las mecanicas de estas, para ver si los drones de largo alcance puesden atacar
 por ejemplo, busca en el arraylist a la torreDeCOmandos y su esta viva hacen la accion
 pero si no no hacen nada y así, pero no se muy bien aun*/
 public abstract class Estructuras {
-    private String tipo;
+    private TipoEstructura tipo;
     private int vida; //no recuerdo si habian unos drones que hacemis más daño que otros
     private boolean isActive;
     private Point posicion;
 
-    public Estructuras(String tipo, Point posicion) {
+    public Estructuras(TipoEstructura tipo, Point posicion) {
         this.tipo = tipo;
         this.posicion = posicion;
         this.vida = 100;
         this.isActive = true;
     }
 
-    public String getTipo() {
+    public TipoEstructura getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoEstructura tipo) {
         this.tipo = tipo;
     }
 

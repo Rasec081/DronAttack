@@ -12,7 +12,7 @@ import java.awt.Point;
  */
 public class TorreDeComunicacion extends Estructuras{
 
-    public TorreDeComunicacion(String tipo, Point posicion) {
+    public TorreDeComunicacion(TipoEstructura tipo, Point posicion) {
         super(tipo, posicion);
     }
 

@@ -16,18 +16,12 @@ public class Mapa {
     public Mapa(int filas, int columnas) {
         this.FILAS = filas;
         this.COLUMNAS = columnas;
-        this.celdas = new Celda[filas][columnas];
+        this.celdas = new Celda[FILAS][COLUMNAS];
         inicializarMapa();
     }
 
-    private void inicializarMapa() {
-        for (int i = 0; i < FILAS; i++) {
-            for (int j = 0; j < COLUMNAS; j++) {
-                celdas[i][j] = new Celda(); // por defecto VACIA
-            }
-        }
-    }
-
+    
+    
     public Celda getCelda(int fila, int columna) {
         return celdas[fila][columna];
     }
@@ -42,5 +36,30 @@ public class Mapa {
 
     public int getCOLUMNAS() {
         return COLUMNAS;
+    }
+    
+    private void inicializarMapa() {
+        for (int i = 0; i < FILAS; i++) {
+            for (int j = 0; j < COLUMNAS; j++) {
+                celdas[i][j] = new Celda(); // por defecto VACIA
+            }
+        }
+    }
+    
+    public boolean estaDentro(int x, int y) {
+        return x >= 0 && x < COLUMNAS && y >= 0 && y < FILAS;
+    }
+    
+    public void imprimirMapa() {
+        for (int i = 0; i < FILAS; i++) {
+            for (int j = 0; j < COLUMNAS; j++) {
+                switch (celdas[i][j].getTipo()) {
+                    case VACIA -> System.out.print(" . ");
+                    case ESTRUCTURA -> System.out.print(" E ");
+                    case DESTRUIDA -> System.out.print(" X ");
+                }
+            }
+            System.out.println();
+        }
     }
 }

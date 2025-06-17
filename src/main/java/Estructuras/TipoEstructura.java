@@ -9,5 +9,8 @@ package Estructuras;
  * @author Daniel
  */
 public enum TipoEstructura {
-    
+    CUARTEL,
+    RADAR,
+    DEPOSITO,
+    TORRE
 }
