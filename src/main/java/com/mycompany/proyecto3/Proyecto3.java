@@ -8,63 +8,68 @@ import Arena.Mapa;
 import Comandos.ICommand;
 import Ejecutables.ClienteEjecutable;
 import Ejecutables.ServidorEjecutable;
-import Estructuras.TipoEstructura;
+import Estructuras.*;
+import Player.Player;
+import java.awt.Point;
 import java.util.Scanner;
 /**
  *
  * @author gambo
  */
 public class Proyecto3 {
+    public static Estructuras crear(TipoEstructura tipo, Point pos) {
+        return switch (tipo) {
+        case RADAR -> new Radar(TipoEstructura.RADAR, pos);
+        case CUARTEL -> new Cuartel(TipoEstructura.CUARTEL, pos);
+        case TORRE -> new TorreDeComunicacion(TipoEstructura.TORRE, pos);
+        case DEPOSITO -> new DepositoDeArmas(TipoEstructura.DEPOSITO, pos);
+        };
+    }
+    
     public static void main(String[] args) {
-        Mapa mapaJugador = new Mapa(); // tamaño fijo para probar
+        Player jugador = new Player("Jugador1");
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Bienvenido a DroneAttack (modo colocacion)");
-        System.out.println("Usa: place <estructura> <fila> <columna>");
-        System.out.println("Comando ver para imprimir mapa. exit para salir.\n");
+        System.out.println("Colocacion de estructuras (place <tipo> <fila> <columna>)");
+        System.out.println("Ver mapa: ver / Salir: exit\n");
 
         while (true) {
             System.out.print("> ");
-            String input = scanner.nextLine().trim();
+            String entrada = scanner.nextLine().trim();
 
-            if (input.equalsIgnoreCase("exit")) {
+            if (entrada.equalsIgnoreCase("exit")) {
                 break;
-            } else if (input.equalsIgnoreCase("ver")) {
-                mapaJugador.imprimirMapa();
-            } else if (input.toLowerCase().startsWith("place ")) {
-                String[] partes = input.split(" ");
+            } else if (entrada.equalsIgnoreCase("ver")) {
+                jugador.getMapa().imprimirMapa(); // método que ya deberías tener
+            } else if (entrada.toLowerCase().startsWith("place ")) {
+                String[] partes = entrada.split(" ");
                 if (partes.length != 4) {
-                    System.out.println("Formato invalido. Usa: place <estructura> <fila> <columna>");
+                    System.out.println("Formato inválido. Ej: place radar 3 4");
                     continue;
                 }
 
                 try {
-                    TipoEstructura estructura = TipoEstructura.valueOf(partes[1].toUpperCase());
-                    
+                    TipoEstructura tipo = TipoEstructura.valueOf(partes[1].toUpperCase());
                     int fila = Integer.parseInt(partes[2]);
-                    int columna = Integer.parseInt(partes[3]);
+                    int col = Integer.parseInt(partes[3]);
+                    Point posicion = new Point(fila, col);
 
-                    if (!mapaJugador.estaDentro(fila, columna)) {
-                        System.out.println("Coordenadas fuera de rango.");
-                        continue;
+                    Estructuras nueva = crear(tipo, posicion);
+                    boolean colocado = jugador.colocarEstructura(nueva, posicion);
+
+                    if (colocado) {
+                        System.out.println("Estructura colocada.");
+                    } else {
+                        System.out.println("No se pudo colocar. Celda ocupada.");
                     }
 
-                    var celda = mapaJugador.getCelda(fila, columna);
-                    if (!celda.estaVacia()) {
-                        System.out.println("Ya hay algo en esa celda.");
-                        continue;
-                    }
-
-                    celda.colocarEstructura(estructura);
-                    System.out.println("Colocado: " + estructura + " en (" + fila + ", " + columna + ")");
-
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Estructura invalida. Usa: radar, cuartel, torre, deposito");
+                } catch (Exception e) {
+                    System.out.println("Error: tipo inválido o coordenadas incorrectas.");
                 }
-            } else {
-                System.out.println("Comando no reconocido.");
             }
         }
-        System.out.println("Fin del programa.");
-    }
+
+        System.out.println("\nEstructuras vivas: " + jugador.cantEstructurasVivas());
+        System.out.println("¿Tiene radar activo? " + jugador.estructuraActiva(TipoEstructura.RADAR));
+    }    
 }

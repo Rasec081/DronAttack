@@ -18,8 +18,10 @@ Servidor\ConexionServidorThread.class
 Configuracion\ConfiguracionJuego.class
 Arena\Mapa.class
 Ejecutables\ServidorEjecutable.class
+com\mycompany\proyecto3\Proyecto3$1.class
 Comandos\ICommand.class
 Cliente\ThreadCliente.class
+Player\Player.class
 Servidor\ThreadServidor.class
 Arena\Mapa$1.class
 Mensajes\Mensaje.class

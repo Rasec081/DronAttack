@@ -12,7 +12,7 @@ import java.awt.Point;
  */
 public class Radar extends Estructuras{
 
-    public Radar(String tipo, Point posicion) {
+    public Radar(TipoEstructura tipo, Point posicion) {
         super(tipo, posicion);
     }
 

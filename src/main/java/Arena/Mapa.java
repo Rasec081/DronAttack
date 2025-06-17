@@ -9,14 +9,18 @@ package Arena;
  * @author gambo
  */
 public class Mapa {
-    private final int FILAS = 10;
-    private final int COLUMNAS = 10;
+    private final int FILAS;
+    private final int COLUMNAS;
     private final Celda[][] celdas;
 
-    public Mapa() {
+    public Mapa(int filas, int columnas) {
+        this.FILAS = filas;
+        this.COLUMNAS = columnas;
         this.celdas = new Celda[FILAS][COLUMNAS];
         inicializarMapa();
     }
+
+    
     
     public Celda getCelda(int fila, int columna) {
         return celdas[fila][columna];

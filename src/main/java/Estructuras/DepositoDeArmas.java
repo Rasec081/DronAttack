@@ -12,7 +12,7 @@ import java.awt.Point;
  */
 public class DepositoDeArmas extends Estructuras{
 
-    public DepositoDeArmas(String tipo, Point posicion) {
+    public DepositoDeArmas(TipoEstructura tipo, Point posicion) {
         super(tipo, posicion);
     }
 

@@ -10,6 +10,7 @@ import Estructuras.Estructuras;
 import Estructuras.TipoEstructura;
 import java.awt.Point;
 import java.util.ArrayList;
+import Configuracion.ConfiguracionJuego;
 
 /**
  *
@@ -23,9 +24,10 @@ public class Player {
     private ArrayList<Estructuras> estructuras;
 
     public Player(String nombre) {
+        ConfiguracionJuego config = ConfiguracionJuego.getInstancia();
         this.nombre = nombre;
-        this.energia = 100;
-        this.mapa = new Mapa(10, 10);
+        this.energia = config.getEnergiaInicial();
+        this.mapa = new Mapa(config.getMapaAncho(), config.getMapaAlto());
         this.turno = false;
         this.estructuras = new ArrayList<>();
     }

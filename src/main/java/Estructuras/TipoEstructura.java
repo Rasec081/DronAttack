@@ -11,6 +11,6 @@ package Estructuras;
 public enum TipoEstructura {
     CUARTEL,
     RADAR,
-    DEPOSITO_ARMAS,
-    TORRE_DE_COMUNICACION
+    DEPOSITO,
+    TORRE
 }

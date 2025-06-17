@@ -12,7 +12,7 @@ import java.awt.Point;
  */
 public class Cuartel extends Estructuras{
 
-    public Cuartel(String tipo, Point posicion) {
+    public Cuartel(TipoEstructura tipo, Point posicion) {
         super(tipo, posicion);
     }
 
