@@ -6,8 +6,7 @@ package Comandos;
 
 import Arena.Celda;
 import Arena.Mapa;
-import Estructuras.*;
-import java.io.OutputStream;
+import Arena.TipoCelda;
 
 /**
  *
@@ -28,7 +27,7 @@ public class PlaceCommand extends BaseCommand{
     }
 
     @Override
-    public void execute(String[] args, OutputStream out) {
+    public void execute(String[] args) {
         // Verificar que hay suficientes argumentos
         if (args.length < 4) {
             System.out.println("Error: Faltan argumentos. Uso: place <estructura> <x> <y>");
@@ -55,13 +54,13 @@ public class PlaceCommand extends BaseCommand{
 
             // Aquí necesitarías convertir el String a tu tipo Estructura
             // Esto depende de cómo definas tus estructuras
-            TipoEstructura estructura = crearEstructuraDesdeString(tipoEstructura);
+            TipoCelda estructura = crearEstructuraDesdeString(tipoEstructura);
             if (estructura == null) {
                 System.out.println("Tipo de estructura no válido: " + tipoEstructura);
                 return;
             }
 
-            celda.colocarEstructura(estructura);
+            celda.setTipo(estructura);
             System.out.println("Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
 
         } catch (NumberFormatException e) {
@@ -69,18 +68,18 @@ public class PlaceCommand extends BaseCommand{
         }
     }
     
-        private TipoEstructura crearEstructuraDesdeString(String tipo) {
+        private TipoCelda crearEstructuraDesdeString(String tipo) {
         // Implementación dependiente de tu sistema
         // Ejemplo básico:
         switch(tipo.toLowerCase()) {
             case "radar":
-                return TipoEstructura.RADAR;
+                return TipoCelda.RADAR;
             case "cuartel":
-                return TipoEstructura.CUARTEL;
+                return TipoCelda.CUARTEL;
             case "torre":
-                return TipoEstructura.TORRE;
+                return TipoCelda.TORRE;
             case "deposito":
-                return TipoEstructura.DEPOSITO;
+                return TipoCelda.DEPOSITO;
             default:
                 return null;
         }

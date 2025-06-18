@@ -7,7 +7,6 @@ package Player;
 import Arena.Mapa;
 import Arena.TipoCelda;
 import Estructuras.Estructuras;
-import Estructuras.TipoEstructura;
 import java.awt.Point;
 import java.util.ArrayList;
 import Configuracion.ConfiguracionJuego;
@@ -87,16 +86,16 @@ public class Player {
         }
     }
     
-    public boolean colocarEstructura(Estructuras estructura, Point pos) {
-        //recibe la estructura ya creada y la posicion de esa estructura
-        if (mapa.getCelda(pos.x, pos.y).estaVacia()) {
-            mapa.setCelda(pos.x, pos.y, TipoCelda.ESTRUCTURA);
-            //sugerencia de chat: estructura.setPosicion(pos); segun yo no porque ya la trae
-            estructuras.add(estructura);
-            return true;
-        }
-        return false; 
-    }
+//    public boolean colocarEstructura(Estructuras estructura, Point pos) {
+//        //recibe la estructura ya creada y la posicion de esa estructura
+//        if (mapa.getCelda(pos.x, pos.y).estaVacia()) {
+//            mapa.setCelda(pos.x, pos.y, TipoCelda.ESTRUCTURA);
+//            //sugerencia de chat: estructura.setPosicion(pos); segun yo no porque ya la trae
+//            estructuras.add(estructura);
+//            return true;
+//        }
+//        return false; 
+//    }
     
     public void recibirAtaque (Point pos, int danio){
         if(mapa.getCelda(pos.x, pos.y).esEstructura()){
@@ -134,7 +133,7 @@ public class Player {
         return cant;
     }
     
-    public boolean estructuraActiva(TipoEstructura buscada){
+    public boolean estructuraActiva(TipoCelda buscada){
         for (Estructuras estructura : estructuras) {
             if(estructura.getTipo() == buscada){
                 return estructura.isIsActive();

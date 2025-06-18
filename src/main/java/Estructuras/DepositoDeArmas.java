@@ -4,6 +4,7 @@
  */
 package Estructuras;
 
+import Arena.TipoCelda;
 import java.awt.Point;
 
 /**
@@ -12,7 +13,7 @@ import java.awt.Point;
  */
 public class DepositoDeArmas extends Estructuras{
 
-    public DepositoDeArmas(TipoEstructura tipo, Point posicion) {
+    public DepositoDeArmas(TipoCelda tipo, Point posicion) {
         super(tipo, posicion);
     }
 

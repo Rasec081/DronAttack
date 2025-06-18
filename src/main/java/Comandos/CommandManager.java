@@ -5,6 +5,7 @@
 package Comandos;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,6 +15,8 @@ public class CommandManager {
     //singleton    
     private static CommandManager commandManager;  
     //hash de ICommands: nombre, class que extiende ICommand
+
+    private final Map<String, ICommand> comandos = new HashMap<>();
     
     //HashMap<String, Class<? extends ICommand>> 
     private static final HashMap<String, Class<? extends ICommand>> COMMANDS = new HashMap<>();      

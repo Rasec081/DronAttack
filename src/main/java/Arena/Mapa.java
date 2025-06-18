@@ -55,7 +55,7 @@ public class Mapa {
             for (int j = 0; j < COLUMNAS; j++) {
                 switch (celdas[i][j].getTipo()) {
                     case VACIA -> System.out.print(" . ");
-                    case ESTRUCTURA -> System.out.print(" E ");
+                    case CUARTEL, DEPOSITO, RADAR, TORRE  -> System.out.print(" E ");
                     case DESTRUIDA -> System.out.print(" X ");
                 }
             }
