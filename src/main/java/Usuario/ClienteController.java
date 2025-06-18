@@ -21,6 +21,18 @@ public class ClienteController {
         this.jugador = new Player(nombreJugador); // el modelo
         this.commandManager = new CommandManager(jugador); // el controlador de comandos
     }
+    
+    private void configurarObservers() {
+//        jugador.addObserver((o, arg) -> {
+//            // Actualizar UI cuando cambia el modelo
+//            vista.actualizarMapaPropio(jugador.getMapa().toArray());
+//            vista.actualizarEstadisticas(
+//                jugador.getEnergia(),
+//                turnoActual,
+//                jugador.cantEstructurasVivas()
+//            );
+//        });
+    }
 
     public void procesarComando(String texto) {
         String respuesta = commandManager.ejecutarComando(texto);
