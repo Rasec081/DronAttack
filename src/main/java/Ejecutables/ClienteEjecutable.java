@@ -5,14 +5,14 @@
 package Ejecutables;
 
 import Cliente.Cliente;
-import Pantallas.PantallaCliente;
+import Usuario.PantallaUsuario;
 
 /**
  *
  * @author gambo
  */
 public class ClienteEjecutable {
-    private PantallaCliente pantalla;
+    private PantallaUsuario pantalla;
     private Cliente cliente;
     
     public ClienteEjecutable(){ // Esto lo pensé así para poder llamarlo desde el main tambien , entonces el del servidor va igual
@@ -22,7 +22,7 @@ public class ClienteEjecutable {
         } else return; // Aqui lo que puede ir es como una mini pantallita de servidor lleno
             
         
-        pantalla = new PantallaCliente();
+        pantalla = new PantallaUsuario();
         pantalla.setVisible(true); 
     }
     
