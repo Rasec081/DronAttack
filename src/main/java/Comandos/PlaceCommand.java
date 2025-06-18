@@ -6,36 +6,82 @@ package Comandos;
 
 import Arena.Celda;
 import Arena.Mapa;
-import Estructuras.TipoEstructura;
-import java.awt.Point;
+import Arena.TipoCelda;
 
 /**
  *
  * @author gambo
  */
-public class PlaceCommand implements ICommand{
+public class PlaceCommand extends BaseCommand{
+    public static final String COMMAND_NAME = "PLACE";
     private Mapa mapaJugador;
-    private TipoEstructura estructura;
-    private Point punto;
 
-    public PlaceCommand(Mapa mapaJugador, TipoEstructura estructura, Point punto) {
-        this.mapaJugador = mapaJugador;
-        this.estructura = estructura;
-        this.punto = punto;
-    }
-    @Override
-    public String ejecutar() {
-        if (!mapaJugador.estaDentro(punto.x, punto.y)) {
-            return "Coordenadas fuera del mapa.";
-        }
-
-        Celda celda = mapaJugador.getCelda(punto.x, punto.y);
-        if (!celda.estaVacia()) {
-            return "Ya hay algo en esa celda.";
-        }
-
-        celda.colocarEstructura(estructura);
-        return "Estructura " + estructura + " colocada en (" + punto.x + ", " + punto.y + ")";
+    // Método setter para inyectar el mapa
+    public void setMapa(Mapa mapa) {
+        this.mapaJugador = mapa;
     }
     
+    @Override
+    public String getCommandName() {
+        return COMMAND_NAME;
+    }
+
+    @Override
+    public void execute(String[] args) {
+        // Verificar que hay suficientes argumentos
+        if (args.length < 4) {
+            System.out.println("Error: Faltan argumentos. Uso: place <estructura> <x> <y>");
+            return;
+        }
+
+        try {
+            // Extraer y parsear los argumentos
+            String tipoEstructura = args[1];  
+            int x = Integer.parseInt(args[2]); 
+            int y = Integer.parseInt(args[3]); 
+
+            // Verificar si las coordenadas están dentro del mapa
+            if (!mapaJugador.estaDentro(x, y)) {
+                System.out.println("Coordenadas fuera del mapa.");
+                return;
+            }
+
+            Celda celda = mapaJugador.getCelda(x, y);
+            if (!celda.estaVacia()) {
+                System.out.println("Ya hay algo en esa celda.");
+                return;
+            }
+
+            // Aquí necesitarías convertir el String a tu tipo Estructura
+            // Esto depende de cómo definas tus estructuras
+            TipoCelda estructura = crearEstructuraDesdeString(tipoEstructura);
+            if (estructura == null) {
+                System.out.println("Tipo de estructura no válido: " + tipoEstructura);
+                return;
+            }
+
+            celda.setTipo(estructura);
+            System.out.println("Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Las coordenadas deben ser números enteros");
+        }
+    }
+    
+        private TipoCelda crearEstructuraDesdeString(String tipo) {
+        // Implementación dependiente de tu sistema
+        // Ejemplo básico:
+        switch(tipo.toLowerCase()) {
+            case "radar":
+                return TipoCelda.RADAR;
+            case "cuartel":
+                return TipoCelda.CUARTEL;
+            case "torre":
+                return TipoCelda.TORRE;
+            case "deposito":
+                return TipoCelda.DEPOSITO;
+            default:
+                return null;
+        }
+    }
 }

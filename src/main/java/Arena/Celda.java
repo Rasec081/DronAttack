@@ -4,7 +4,6 @@
  */
 package Arena;
 
-import Estructuras.TipoEstructura;
 
 /**
  *
@@ -13,7 +12,6 @@ import Estructuras.TipoEstructura;
 
 public class Celda {
     private TipoCelda tipo;
-    private TipoEstructura estructura;
 
     public Celda() {
         this.tipo = TipoCelda.VACIA; // por defecto
@@ -26,26 +24,13 @@ public class Celda {
     public void setTipo(TipoCelda tipo) {
         this.tipo = tipo;
     }
-    
-    public TipoEstructura getEstructura() {
-        return estructura;
-    }
-    
-    public boolean tieneEstructura() {
-        return estructura != null;
-    }
-
-    public void colocarEstructura(TipoEstructura tipo) {
-        this.estructura = tipo;
-        this.tipo = TipoCelda.ESTRUCTURA;
-    }
 
     public boolean estaVacia() {
         return tipo == TipoCelda.VACIA;
     }
 
     public boolean esEstructura() {
-        return tipo == TipoCelda.ESTRUCTURA;
+        return tipo != TipoCelda.VACIA && tipo != TipoCelda.DESTRUIDA;
     }
 
     public boolean estaDestruida() {

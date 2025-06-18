@@ -10,6 +10,9 @@ package Arena;
  */
 public enum TipoCelda {
     VACIA,
-    ESTRUCTURA,
+    CUARTEL,
+    RADAR,
+    DEPOSITO,
+    TORRE,
     DESTRUIDA
 }

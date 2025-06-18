@@ -4,6 +4,8 @@
  */
 package Usuario;
 
+import Arena.Mapa;
+
 /**
  *
  * @author gambo
@@ -14,8 +16,40 @@ public class PantallaUsuario extends javax.swing.JFrame {
      * Creates new form PantallaCliente
      */
     public PantallaUsuario() {
-        initComponents();
-        setTitle("Cliente");
+    initComponents();
+    setTitle("Cliente");
+    setLocationRelativeTo(null);
+
+    ClienteController controlador = new ClienteController(this, "Jugador1");
+
+    entradaComandos.addActionListener(e -> {
+        String texto = entradaComandos.getText().trim();
+        //controlador.procesarComando(texto);
+        entradaComandos.setText("");
+    });
+}
+    
+    public void mostrarRespuestaComando(String comando, String respuesta) {
+        salidaComandos.append("> " + comando + "\n");
+        salidaComandos.append(respuesta + "\n");
+    }
+    
+        // Añadir estos métodos:
+    public void actualizarMapaPropio(Mapa mapa) {
+        // Implementar lógica para mostrar tu mapa
+    }
+    
+    public void actualizarMapaEnemigo(Mapa mapa) {
+        // Implementar con niebla de guerra
+    }
+    
+    public void actualizarEstadisticas(int energia, int turno, int estructurasActivas) {
+        // Actualizar panel de estadísticas
+    }
+    
+    public void mostrarNotificacion(String mensaje) {
+        // Para mensajes del Observer
+        salidaComandos.append("[NOTIFICACIÓN] " + mensaje + "\n");
     }
 
     /**

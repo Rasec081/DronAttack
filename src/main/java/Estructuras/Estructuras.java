@@ -4,6 +4,7 @@
  */
 package Estructuras;
 
+import Arena.TipoCelda;
 import java.awt.Point;
 
 /**
@@ -17,23 +18,23 @@ a las mecanicas de estas, para ver si los drones de largo alcance puesden atacar
 por ejemplo, busca en el arraylist a la torreDeCOmandos y su esta viva hacen la accion
 pero si no no hacen nada y así, pero no se muy bien aun*/
 public abstract class Estructuras {
-    private TipoEstructura tipo;
+    private TipoCelda tipo;
     private int vida; //no recuerdo si habian unos drones que hacemis más daño que otros
     private boolean isActive;
     private Point posicion;
 
-    public Estructuras(TipoEstructura tipo, Point posicion) {
+    public Estructuras(TipoCelda tipo, Point posicion) {
         this.tipo = tipo;
         this.posicion = posicion;
         this.vida = 100;
         this.isActive = true;
     }
 
-    public TipoEstructura getTipo() {
+    public TipoCelda getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoEstructura tipo) {
+    public void setTipo(TipoCelda tipo) {
         this.tipo = tipo;
     }
 

@@ -4,6 +4,7 @@
  */
 package Estructuras;
 
+import Arena.TipoCelda;
 import java.awt.Point;
 
 /**
@@ -12,7 +13,7 @@ import java.awt.Point;
  */
 public class Radar extends Estructuras{
 
-    public Radar(TipoEstructura tipo, Point posicion) {
+    public Radar(TipoCelda tipo, Point posicion) {
         super(tipo, posicion);
     }
 
