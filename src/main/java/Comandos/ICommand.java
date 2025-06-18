@@ -4,10 +4,13 @@
  */
 package Comandos;
 
+import java.io.OutputStream;
+
 /**
  *
  * @author gambo
  */
 public interface ICommand {
-    public String ejecutar();
+    public String getCommandName();       
+    public void execute(String[] args, OutputStream out); 
 }
