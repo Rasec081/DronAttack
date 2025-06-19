@@ -14,6 +14,7 @@ Pantallas\PantallaServidor.class
 Servidor\Servidor.class
 Estructuras\Cuartel.class
 Comandos\PlaceCommand.class
+Usuario\PantallaUsuario$3.class
 Comandos\ScanCommand.class
 Comandos\HelpCommand.class
 Comandos\MoveCommand.class

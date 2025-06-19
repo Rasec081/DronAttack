@@ -20,6 +20,7 @@ public class Player {
     private int energia;
     private boolean turno;
     private Mapa mapa;
+    private Mapa mapaEnemigo;
     private ArrayList<Estructuras> estructuras;
 
     public Player(String nombre) {
@@ -27,6 +28,7 @@ public class Player {
         this.nombre = nombre;
         this.energia = config.getEnergiaInicial();
         this.mapa = new Mapa(config.getMapaAncho(), config.getMapaAlto());
+        this.mapaEnemigo = new Mapa(config.getMapaAncho(), config.getMapaAlto());
         this.turno = false;
         this.estructuras = new ArrayList<>();
     }

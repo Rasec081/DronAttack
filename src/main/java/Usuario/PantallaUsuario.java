@@ -5,14 +5,20 @@
 package Usuario;
 
 import Arena.Mapa;
+import Arena.TipoCelda;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JLabel;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.BorderFactory;
+
 
 /**
  *
@@ -22,7 +28,10 @@ public class PantallaUsuario extends javax.swing.JFrame {
     private static final String PROMPT = ">> "; // Símbolo de prompt
     private boolean isEditingPrompt = false;
     private int lastPromptPosition = 0; // Guarda la posición del último prompt
-    
+    private final int MAPA_ANCHO = 10;
+    private final int MAPA_ALTO= 10;
+    private JLabel[][] matrizMapaPropio;
+    private JLabel[][] matrizMapaEnemigo;
     private ClienteController controlador;
     
     /**
@@ -33,11 +42,22 @@ public class PantallaUsuario extends javax.swing.JFrame {
         setTitle("DronAttack");
         setLocationRelativeTo(null);
         
+        //para que los tamaños de los paneles se conserven
+        Dimension mapaDimension = mapaJugadorPrincipalPnl.getSize();
+        mapaJugadorPrincipalPnl.setPreferredSize(mapaDimension);
+        mapaJugadorPrincipalPnl.setMaximumSize(mapaDimension);
+        mapaJugadorPrincipalPnl.setMinimumSize(mapaDimension);
+        
+        mapaJugadorSecundarioPnl.setPreferredSize(mapaDimension);
+        mapaJugadorSecundarioPnl.setMaximumSize(mapaDimension);
+        mapaJugadorSecundarioPnl.setMinimumSize(mapaDimension);
+        
         // Configurar el JTextArea como terminal
         configurarTerminal();
         
         this.controlador = new ClienteController(this, "Jugador1");
-        
+        inicializarMapasVisuales();
+        actualizarMapaPropio(controlador.getJugador().getMapa());
 //        entradaComandos.addActionListener(e -> {
 //            String texto = entradaComandos.getText().trim();
 //            controlador.procesarComando(texto);
@@ -107,6 +127,65 @@ public class PantallaUsuario extends javax.swing.JFrame {
         comandos.setCaretPosition(lastPromptPosition);
     }
 
+    public void inicializarMapasVisuales() {
+        matrizMapaPropio = new JLabel[MAPA_ALTO][MAPA_ANCHO];
+        matrizMapaEnemigo = new JLabel[MAPA_ALTO][MAPA_ANCHO];
+
+        // Usamos GridLayout para mostrar la matriz
+        mapaJugadorPrincipalPnl.setLayout(new GridLayout(MAPA_ALTO, MAPA_ANCHO));
+        mapaJugadorSecundarioPnl.setLayout(new GridLayout(MAPA_ALTO, MAPA_ANCHO));
+
+        for (int y = 0; y < MAPA_ALTO; y++) {
+            for (int x = 0; x < MAPA_ANCHO; x++) {
+                // Celda propia
+                JLabel celdaPropia = new JLabel();
+                celdaPropia.setOpaque(true);
+                celdaPropia.setBackground(Color.LIGHT_GRAY);
+                celdaPropia.setHorizontalAlignment(JLabel.CENTER);
+                celdaPropia.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK));
+                matrizMapaPropio[y][x] = celdaPropia;
+                mapaJugadorPrincipalPnl.add(celdaPropia);
+
+                // Celda enemiga
+                JLabel celdaEnemiga = new JLabel();
+                celdaEnemiga.setOpaque(true);
+                celdaEnemiga.setBackground(Color.DARK_GRAY);
+                celdaEnemiga.setHorizontalAlignment(JLabel.CENTER);
+                celdaEnemiga.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                matrizMapaEnemigo[y][x] = celdaEnemiga;
+                mapaJugadorSecundarioPnl.add(celdaEnemiga);
+            }
+        }
+
+        // Refrescar visualmente
+        mapaJugadorPrincipalPnl.revalidate();
+        mapaJugadorPrincipalPnl.repaint();
+        mapaJugadorSecundarioPnl.revalidate();
+        mapaJugadorSecundarioPnl.repaint();
+    }
+    
+    public void actualizarMapaPropio(Mapa mapa) {
+        for (int y = 0; y < MAPA_ALTO; y++) {
+            for (int x = 0; x < MAPA_ANCHO; x++) {
+                TipoCelda celda = controlador.getJugador().getMapa().getCelda(x, y).getTipo(); // según tu modelo
+
+                Color color = switch (celda) {
+                    case VACIA -> Color.LIGHT_GRAY;
+                    case RADAR -> Color.BLUE;
+                    case CUARTEL -> Color.CYAN;
+                    case TORRE -> Color.GREEN;
+                    case DEPOSITO -> Color.ORANGE;
+                    case DESTRUIDA -> Color.RED;
+                    default -> Color.GRAY;
+                };
+
+                matrizMapaPropio[y][x].setBackground(color);
+                matrizMapaPropio[y][x].setText(""); // o algún texto si querés
+            }
+        }
+    }
+
+    
     // Añadir estos métodos:
     public void mostrarRespuestaComando(String comando, String respuesta) {
         comandos.append("\n" + respuesta + "\n" + PROMPT);
@@ -114,9 +193,6 @@ public class PantallaUsuario extends javax.swing.JFrame {
         comandos.setCaretPosition(lastPromptPosition);
     }
     
-    public void actualizarMapaPropio(Mapa mapa) {
-        // Implementar lógica para mostrar tu mapa
-    }
     
     public void actualizarMapaEnemigo(Mapa mapa) {
         // Implementar con niebla de guerra

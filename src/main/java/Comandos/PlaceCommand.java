@@ -82,7 +82,7 @@ public class PlaceCommand extends BaseCommand{
             jugador.getEstructuras().add(struct);
             
             vista.mostrarRespuestaComando(COMMAND_NAME,"Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
-
+            vista.actualizarMapaPropio(jugador.getMapa());
         } catch (NumberFormatException e) {
             vista.mostrarRespuestaComando(COMMAND_NAME, "Comando no funciono");
             System.out.println("Error: Las coordenadas deben ser números enteros");
