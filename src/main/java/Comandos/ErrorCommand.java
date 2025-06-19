@@ -5,9 +5,16 @@
  */
 package Comandos;
 
+import Usuario.PantallaUsuario;
+
 public class ErrorCommand extends BaseCommand {       
-    private static final String COMMAND_NAME = "ERROR";       
-    
+    private static final String COMMAND_NAME = "ERROR";  
+    private PantallaUsuario vista;
+
+    public ErrorCommand(PantallaUsuario vista) {
+        this.vista = vista;
+    }
+        
     @Override       
     public String getCommandName() {           
         return COMMAND_NAME;   
@@ -15,7 +22,7 @@ public class ErrorCommand extends BaseCommand {
     
     @Override       
     public void execute(String[] args) {           
-        String message = "Error al invocar el comando";    
+        vista.mostrarRespuestaComando(COMMAND_NAME,  args[0] + "incorrecto");
     }   
 }
 
