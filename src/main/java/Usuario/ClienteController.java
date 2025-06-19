@@ -4,6 +4,7 @@
  */
 package Usuario;
 
+import Comandos.CommandFactory;
 import Comandos.CommandManager;
 import Comandos.ICommand;
 import Player.Player;
@@ -20,7 +21,10 @@ public class ClienteController {
     public ClienteController(PantallaUsuario vista, String nombreJugador) {
         this.vista = vista;
         this.jugador = new Player(nombreJugador); // el modelo
-        this.commandManager = CommandManager.getIntance(); // el controlador de comandos
+        this.commandManager = CommandManager.getInstance(); // el controlador de comandos
+        
+        //aca llamamos/creamos a factory (se implemento así para implmenetar el commandFactory y que quede más ordenado)
+        new CommandFactory(jugador, vista);
     }
     
     private void configurarObservers() {

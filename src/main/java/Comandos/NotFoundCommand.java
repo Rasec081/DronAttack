@@ -5,9 +5,16 @@
  */
 package Comandos;
 
+import Usuario.PantallaUsuario;
+
 public class NotFoundCommand extends BaseCommand {       
     private static final String COMMAND_NAME = "NOT FOUND";       
-    
+    private PantallaUsuario vista;
+
+    public NotFoundCommand(PantallaUsuario vista) {
+        this.vista = vista;
+    }
+        
     @Override       
     public String getCommandName() {           
         return COMMAND_NAME;   
@@ -15,5 +22,6 @@ public class NotFoundCommand extends BaseCommand {
     
     @Override       
     public void execute(String[] args) {           
+        vista.mostrarRespuestaComando(COMMAND_NAME, args[0] + " no encontrado");
     }   
 }

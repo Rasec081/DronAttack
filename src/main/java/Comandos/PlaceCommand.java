@@ -7,6 +7,15 @@ package Comandos;
 import Arena.Celda;
 import Arena.Mapa;
 import Arena.TipoCelda;
+import static Arena.TipoCelda.CUARTEL;
+import Estructuras.Cuartel;
+import Estructuras.DepositoDeArmas;
+import Estructuras.Estructuras;
+import Estructuras.Radar;
+import Estructuras.TorreDeComunicacion;
+import Player.Player;
+import Usuario.PantallaUsuario;
+import java.awt.Point;
 
 /**
  *
@@ -14,12 +23,14 @@ import Arena.TipoCelda;
  */
 public class PlaceCommand extends BaseCommand{
     public static final String COMMAND_NAME = "PLACE";
-    private Mapa mapaJugador;
+    private Player jugador;
+    private PantallaUsuario vista;
 
-    // Método setter para inyectar el mapa
-    public void setMapa(Mapa mapa) {
-        this.mapaJugador = mapa;
+    public PlaceCommand(Player jugador, PantallaUsuario vista) {
+        this.jugador = jugador;
+        this.vista = vista;
     }
+
     
     @Override
     public String getCommandName() {
@@ -41,12 +52,12 @@ public class PlaceCommand extends BaseCommand{
             int y = Integer.parseInt(args[3]); 
 
             // Verificar si las coordenadas están dentro del mapa
-            if (!mapaJugador.estaDentro(x, y)) {
+            if (!jugador.getMapa().estaDentro(x, y)) {
                 System.out.println("Coordenadas fuera del mapa.");
                 return;
             }
 
-            Celda celda = mapaJugador.getCelda(x, y);
+            Celda celda = jugador.getMapa().getCelda(x, y);
             if (!celda.estaVacia()) {
                 System.out.println("Ya hay algo en esa celda.");
                 return;
@@ -59,16 +70,21 @@ public class PlaceCommand extends BaseCommand{
                 System.out.println("Tipo de estructura no válido: " + tipoEstructura);
                 return;
             }
-
-            celda.setTipo(estructura);
-            System.out.println("Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
+            
+            //Aca añadimos la estructura
+            jugador.getMapa().getCelda(x, y).setTipo(estructura);
+            Estructuras struct = crearEstructura(estructura, new Point(x, y));
+            jugador.getEstructuras().add(struct);
+            
+            vista.mostrarRespuestaComando(COMMAND_NAME,"Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
 
         } catch (NumberFormatException e) {
+            vista.mostrarRespuestaComando(COMMAND_NAME, "Comando no funciono");
             System.out.println("Error: Las coordenadas deben ser números enteros");
         }
     }
     
-        private TipoCelda crearEstructuraDesdeString(String tipo) {
+    private TipoCelda crearEstructuraDesdeString(String tipo) {
         // Implementación dependiente de tu sistema
         // Ejemplo básico:
         switch(tipo.toLowerCase()) {
@@ -83,5 +99,29 @@ public class PlaceCommand extends BaseCommand{
             default:
                 return null;
         }
+    }
+    
+    private Estructuras crearEstructura (TipoCelda tipo, Point punto){
+        Estructuras struct = null;
+        
+        switch (tipo) {
+            case CUARTEL:
+                struct = new Cuartel(TipoCelda.CUARTEL,punto);
+                break;
+                
+             case RADAR:
+                struct = new Radar(TipoCelda.RADAR,punto);
+                break;
+                
+            case DEPOSITO:
+                struct = new DepositoDeArmas(TipoCelda.DEPOSITO,punto);
+                break;
+                
+            case TORRE:
+                struct = new TorreDeComunicacion(TipoCelda.TORRE,punto);
+                break;       
+        }
+        
+        return struct;
     }
 }
