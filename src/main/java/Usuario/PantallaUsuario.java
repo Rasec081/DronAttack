@@ -23,6 +23,8 @@ public class PantallaUsuario extends javax.swing.JFrame {
     private boolean isEditingPrompt = false;
     private int lastPromptPosition = 0; // Guarda la posición del último prompt
     
+    private ClienteController controlador;
+    
     /**
      * Creates new form PantallaCliente
      */
@@ -34,7 +36,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
         // Configurar el JTextArea como terminal
         configurarTerminal();
         
-        ClienteController controlador = new ClienteController(this, "Jugador1");
+        this.controlador = new ClienteController(this, "Jugador1");
         
 //        entradaComandos.addActionListener(e -> {
 //            String texto = entradaComandos.getText().trim();
@@ -81,7 +83,11 @@ public class PantallaUsuario extends javax.swing.JFrame {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     e.consume();
-                    procesarComandoTerminal();
+                    //procesarComandoTerminal();
+                    String fullText = comandos.getText();
+                    // Asegurarnos de que solo tomamos el texto después del último prompt
+                    String comando = fullText.substring(lastPromptPosition).trim();
+                    controlador.procesarComando(comando);
                 }
             }
         });
@@ -102,6 +108,11 @@ public class PantallaUsuario extends javax.swing.JFrame {
     }
 
     // Añadir estos métodos:
+    public void mostrarRespuestaComando(String comando, String respuesta) {
+        comandos.append("\n" + respuesta + "\n" + PROMPT);
+        lastPromptPosition = comandos.getText().length();
+        comandos.setCaretPosition(lastPromptPosition);
+    }
     
     public void actualizarMapaPropio(Mapa mapa) {
         // Implementar lógica para mostrar tu mapa
