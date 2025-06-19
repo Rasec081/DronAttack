@@ -10,7 +10,8 @@ package com.mycompany.proyecto3;
  */
 public class Proyecto3 {    
     public static void main(String[] args) {
-        
+        Usuario.PantallaUsuario p = new Usuario.PantallaUsuario();
+        p.setVisible(true);
     }
         
 }
