@@ -203,28 +203,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
         comandos.setCaretPosition(lastPromptPosition);
     }
     
-    public void ponerNieblaEnemigo(){
-//        for (int y = 0; y < MAPA_ALTO; y++) {
-//            for (int x = 0; x < MAPA_ANCHO; x++) {
-//                if((TipoCelda.VACIA == controlador.getJugador().getMapaEnemigo().getCelda(x, y).getTipo())){
-//                    JLabel label = matrizMapaEnemigo[y][x];
-//                    String ruta = TipoCelda.NIEBLA.getRuta(); // imagen de niebla
-//
-//                    try {
-//                        ImageIcon icono = new ImageIcon(getClass().getResource(ruta));
-//                        Image imagenEscalada = icono.getImage().getScaledInstance(
-//                        label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
-//                        label.setIcon(new ImageIcon(imagenEscalada));
-//                        label.setText("");
-//                        label.setBackground(null);
-//                    } catch (Exception e) {
-//                        label.setIcon(null);
-//                        label.setBackground(Color.BLACK);
-//                        label.setText("?");
-//                    }
-//                }
-//            }
-//        }     
+    public void ponerNieblaEnemigo(){   
         for (int y = 0; y < MAPA_ALTO; y++) {
                 for (int x = 0; x < MAPA_ANCHO; x++) {
                     if (TipoCelda.VACIA == controlador.getJugador().getMapaEnemigo().getCelda(x, y).getTipo()) {
