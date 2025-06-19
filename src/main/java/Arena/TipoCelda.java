@@ -11,7 +11,7 @@ package Arena;
 public enum TipoCelda {
 
     VACIA(null),
-    NIEBLA(null),
+    NIEBLA("/Imagenes/niebla.png"),
     CUARTEL("/Imagenes/cuartel.png"),
     RADAR("/Imagenes/radar.png"),
     DEPOSITO("/Imagenes/deposito.png"),

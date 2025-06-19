@@ -72,6 +72,14 @@ public class Player {
     public void setEstructuras(ArrayList<Estructuras> estructuras) {
         this.estructuras = estructuras;
     }
+
+    public Mapa getMapaEnemigo() {
+        return mapaEnemigo;
+    }
+
+    public void setMapaEnemigo(Mapa mapaEnemigo) {
+        this.mapaEnemigo = mapaEnemigo;
+    }
     
     //se podria hacer con un simple modificar energia y que se le pase como + o -, per meh
     public void restarEnergia(int cant){

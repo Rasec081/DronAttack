@@ -17,7 +17,10 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.net.URL;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -58,6 +61,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
         this.controlador = new ClienteController(this, "Jugador1");
         inicializarMapasVisuales();
         actualizarMapaPropio(controlador.getJugador().getMapa());
+        ponerNieblaEnemigo();
 //        entradaComandos.addActionListener(e -> {
 //            String texto = entradaComandos.getText().trim();
 //            controlador.procesarComando(texto);
@@ -166,23 +170,29 @@ public class PantallaUsuario extends javax.swing.JFrame {
     
     public void actualizarMapaPropio(Mapa mapa) {
         for (int y = 0; y < MAPA_ALTO; y++) {
-            for (int x = 0; x < MAPA_ANCHO; x++) {
-                TipoCelda celda = controlador.getJugador().getMapa().getCelda(x, y).getTipo(); // según tu modelo
+        for (int x = 0; x < MAPA_ANCHO; x++) {
+            if(!(TipoCelda.VACIA == controlador.getJugador().getMapa().getCelda(x, y).getTipo())){
+                TipoCelda celda = controlador.getJugador().getMapa().getCelda(x, y).getTipo();
+                String ruta = celda.getRuta(); // ← obtiene algo como "/img/cuartel.png"
+                JLabel label = matrizMapaPropio[y][x];
 
-                Color color = switch (celda) {
-                    case VACIA -> Color.LIGHT_GRAY;
-                    case RADAR -> Color.BLUE;
-                    case CUARTEL -> Color.CYAN;
-                    case TORRE -> Color.GREEN;
-                    case DEPOSITO -> Color.ORANGE;
-                    case DESTRUIDA -> Color.RED;
-                    default -> Color.GRAY;
-                };
-
-                matrizMapaPropio[y][x].setBackground(color);
-                matrizMapaPropio[y][x].setText(""); // o algún texto si querés
+                // Carga la imagen y la escala al tamaño del label
+                try {
+                    ImageIcon icono = new ImageIcon(getClass().getResource(ruta));
+                    Image imagenEscalada = icono.getImage().getScaledInstance(
+                            label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+                    label.setIcon(new ImageIcon(imagenEscalada));
+                    label.setText(""); // borra cualquier texto
+                    label.setBackground(null); // opcional: quita color de fondo
+                } catch (Exception e) {
+                    // Si la imagen no se encuentra, mostrar color por defecto
+                    label.setIcon(null);
+                    label.setBackground(Color.GRAY);
+                    label.setText("?");
+                }
             }
         }
+    }
     }
 
     
@@ -193,6 +203,60 @@ public class PantallaUsuario extends javax.swing.JFrame {
         comandos.setCaretPosition(lastPromptPosition);
     }
     
+    public void ponerNieblaEnemigo(){
+//        for (int y = 0; y < MAPA_ALTO; y++) {
+//            for (int x = 0; x < MAPA_ANCHO; x++) {
+//                if((TipoCelda.VACIA == controlador.getJugador().getMapaEnemigo().getCelda(x, y).getTipo())){
+//                    JLabel label = matrizMapaEnemigo[y][x];
+//                    String ruta = TipoCelda.NIEBLA.getRuta(); // imagen de niebla
+//
+//                    try {
+//                        ImageIcon icono = new ImageIcon(getClass().getResource(ruta));
+//                        Image imagenEscalada = icono.getImage().getScaledInstance(
+//                        label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+//                        label.setIcon(new ImageIcon(imagenEscalada));
+//                        label.setText("");
+//                        label.setBackground(null);
+//                    } catch (Exception e) {
+//                        label.setIcon(null);
+//                        label.setBackground(Color.BLACK);
+//                        label.setText("?");
+//                    }
+//                }
+//            }
+//        }     
+        for (int y = 0; y < MAPA_ALTO; y++) {
+                for (int x = 0; x < MAPA_ANCHO; x++) {
+                    if (TipoCelda.VACIA == controlador.getJugador().getMapaEnemigo().getCelda(x, y).getTipo()) {
+                        JLabel label = matrizMapaEnemigo[y][x];
+                        String ruta = TipoCelda.NIEBLA.getRuta();
+
+                        try {
+                            // Usa ClassLoader y elimina el "/" inicial si existe.
+                            String rutaLimpia = ruta.startsWith("/") ? ruta.substring(1) : ruta;
+                            URL url = ClassLoader.getSystemResource(rutaLimpia);
+                            if (url == null) {
+                                throw new Exception("No se encontró: " + rutaLimpia);
+                            }
+                            ImageIcon icono = new ImageIcon(url);
+                            // Escala la imagen con un tamaño seguro.
+                            int ancho = label.getWidth() > 0 ? label.getWidth() : 50;
+                            int alto = label.getHeight() > 0 ? label.getHeight() : 50;
+                            Image imagenEscalada = icono.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+                            label.setIcon(new ImageIcon(imagenEscalada));
+                            label.setText("");
+                            label.setBackground(null);
+                        } catch (Exception e) {
+                            System.err.println("Error al cargar niebla: " + e.getMessage());
+                            label.setIcon(null);
+                            label.setBackground(Color.BLACK);
+                            label.setText("?");
+                        }
+                    }
+                }
+            }
+        
+    }
     
     public void actualizarMapaEnemigo(Mapa mapa) {
         // Implementar con niebla de guerra
