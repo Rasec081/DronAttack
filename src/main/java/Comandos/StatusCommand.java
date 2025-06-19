@@ -37,7 +37,7 @@ public class StatusCommand implements ICommand {
             String txt = "Tipo " + estructura.getTipo() + "     Vida" + estructura.getVida() + "    Posicion" + estructura.getPosicion() + "\n";
             status += txt;
         }
-        vista.mostrarRespuestaComando(COMMAND_NAME, status);
+        vista.mostrarRespuestaComando(status);
        }
     
 }

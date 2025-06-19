@@ -9,11 +9,22 @@ package Arena;
  * @author gambo
  */
 public enum TipoCelda {
-    VACIA,
-    NIEBLA,
-    CUARTEL,
-    RADAR,
-    DEPOSITO,
-    TORRE,
-    DESTRUIDA
+
+    VACIA(null),
+    NIEBLA(null),
+    CUARTEL("/Imagenes/cuartel.png"),
+    RADAR("/Imagenes/radar.png"),
+    DEPOSITO("/Imagenes/deposito.png"),
+    TORRE("/Imagenes/torre.png"),
+    DESTRUIDA("/Imagenes/destruido.png");
+    
+    private final String ruta;
+    private TipoCelda(String ruta) {
+            this.ruta = ruta;
+        }
+        
+        public String getRuta(){
+            return ruta;
+        }
+
 }

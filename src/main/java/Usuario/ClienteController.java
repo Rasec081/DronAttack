@@ -39,32 +39,47 @@ public class ClienteController {
 //        });
     }
 
-    public String procesarComando(String texto) {
+    public void procesarComando(String texto) {
         // Eliminar espacios extras y dividir el texto en partes
         String[] partes = texto.trim().split("\\s+"); // \\s+ divide por cualquier espacio en blanco
 
         // Verificar si hay al menos un comando
         if (partes.length == 0) {
-            return "Error: No se ingresó ningún comando.";
+            error(partes);
+            return;
         }
 
         String nombreComando = partes[0].toLowerCase();
         ICommand comando = commandManager.getCommand(nombreComando);
 
         if (comando != null) {
+            
             // Crear un nuevo array sin el nombre del comando para los argumentos
-            String[] args = new String[partes.length - 1];
-            System.arraycopy(partes, 1, args, 0, partes.length - 1);
+            String[] args = new String[partes.length];
+            System.arraycopy(partes, 0, args, 0, partes.length );
 
             // Ejecutar el comando con los argumentos
             comando.execute(args);
-            return "holaa no se que poner";
         } else {
-            return "Comando desconocido: " + nombreComando + ". Escribe 'help' para ver los disponibles.";
+            noEncontrado(partes);
         }
     }
 
     public Player getJugador() {
         return jugador;
+    }
+    
+    private void error(String[] partes){
+        String nombreComando = "Error";
+        String[] args = new String[partes.length];
+        ICommand comando = commandManager.getCommand(nombreComando);
+        comando.execute(args);
+    }
+    
+    private void noEncontrado(String[] partes){
+        String nombreComando = "NotFound";
+        String[] args = new String[partes.length];
+        ICommand comando = commandManager.getCommand(nombreComando);
+        comando.execute(args);
     }
 }

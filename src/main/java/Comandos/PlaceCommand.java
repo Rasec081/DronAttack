@@ -40,21 +40,16 @@ public class PlaceCommand extends BaseCommand{
     @Override
     public void execute(String[] args) {
         // Verificar que hay suficientes argumentos
-        for (String arg : args) {
-            System.out.println("args: " + arg);
-        }
-        
-        System.out.println("length: " + args.length);
-        if (args.length < 3) {
+        if (args.length < 4) {
             System.out.println("Error: Faltan argumentos. Uso: place <estructura> <x> <y>");
             return;
         }
 
         try {
             // Extraer y parsear los argumentos
-            String tipoEstructura = args[0];  
-            int x = Integer.parseInt(args[1]); 
-            int y = Integer.parseInt(args[2]); 
+            String tipoEstructura = args[1];  
+            int x = Integer.parseInt(args[2]); 
+            int y = Integer.parseInt(args[3]); 
 
             // Verificar si las coordenadas están dentro del mapa
             if (!jugador.getMapa().estaDentro(x, y)) {
@@ -81,10 +76,12 @@ public class PlaceCommand extends BaseCommand{
             Estructuras struct = crearEstructura(estructura, new Point(x, y));
             jugador.getEstructuras().add(struct);
             
-            vista.mostrarRespuestaComando(COMMAND_NAME,"Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
+
+            vista.mostrarRespuestaComando("Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
             vista.actualizarMapaPropio(jugador.getMapa());
+
         } catch (NumberFormatException e) {
-            vista.mostrarRespuestaComando(COMMAND_NAME, "Comando no funciono");
+            vista.mostrarRespuestaComando("Comando no funciono");
             System.out.println("Error: Las coordenadas deben ser números enteros");
         }
     }
