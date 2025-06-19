@@ -83,10 +83,10 @@ public class PantallaUsuario extends javax.swing.JFrame {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     e.consume();
-                    //procesarComandoTerminal();
                     String fullText = comandos.getText();
                     // Asegurarnos de que solo tomamos el texto después del último prompt
                     String comando = fullText.substring(lastPromptPosition).trim();
+                    System.out.println("comand" + comando);
                     controlador.procesarComando(comando);
                 }
             }
@@ -108,7 +108,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
     }
 
     // Añadir estos métodos:
-    public void mostrarRespuestaComando(String comando, String respuesta) {
+    public void mostrarRespuestaComando(String respuesta) {
         comandos.append("\n" + respuesta + "\n" + PROMPT);
         lastPromptPosition = comandos.getText().length();
         comandos.setCaretPosition(lastPromptPosition);
