@@ -22,7 +22,7 @@ public class ErrorCommand extends BaseCommand {
     
     @Override       
     public void execute(String[] args) {           
-        vista.mostrarRespuestaComando(COMMAND_NAME,  args[0] + "incorrecto");
+        vista.mostrarRespuestaComando(COMMAND_NAME + args[0] + "No válido");
     }   
 }
 

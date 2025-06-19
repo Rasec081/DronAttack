@@ -22,6 +22,6 @@ public class NotFoundCommand extends BaseCommand {
     
     @Override       
     public void execute(String[] args) {           
-        vista.mostrarRespuestaComando(COMMAND_NAME, args[0] + " no encontrado");
+        vista.mostrarRespuestaComando("Comando no encontrado \nEscribe 'help' para ver los disponibles.");
     }   
 }
