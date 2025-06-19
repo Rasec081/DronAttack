@@ -40,16 +40,21 @@ public class PlaceCommand extends BaseCommand{
     @Override
     public void execute(String[] args) {
         // Verificar que hay suficientes argumentos
-        if (args.length < 4) {
+        for (String arg : args) {
+            System.out.println("args: " + arg);
+        }
+        
+        System.out.println("length: " + args.length);
+        if (args.length < 3) {
             System.out.println("Error: Faltan argumentos. Uso: place <estructura> <x> <y>");
             return;
         }
 
         try {
             // Extraer y parsear los argumentos
-            String tipoEstructura = args[1];  
-            int x = Integer.parseInt(args[2]); 
-            int y = Integer.parseInt(args[3]); 
+            String tipoEstructura = args[0];  
+            int x = Integer.parseInt(args[1]); 
+            int y = Integer.parseInt(args[2]); 
 
             // Verificar si las coordenadas están dentro del mapa
             if (!jugador.getMapa().estaDentro(x, y)) {
