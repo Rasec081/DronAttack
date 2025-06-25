@@ -1,6 +1,9 @@
 package Cliente;
 
+import Arena.Mapa;
 import Mensajes.Mensaje;
+import Mensajes.TipoMensaje;
+import static Mensajes.TipoMensaje.MAPA_COMPLETO;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,10 +13,10 @@ public class ThreadCliente extends Thread {
     private volatile boolean isRunning = true; // Cambiado a volatile para mejor manejo de hilos
     private final Socket socket;
     private final Cliente cliente;
-    private final ManejoEnvioMensajes manejadorEnvio;
+    private  ManejoEnvioMensajes manejadorEnvio;
     private ObjectInputStream entradaDatos;
     private ObjectOutputStream salidaDatos;
-    
+    Mensaje mensaje;
 
     public ThreadCliente(Socket socket, Cliente cliente) {
         this.socket = socket;
@@ -30,19 +33,57 @@ public class ThreadCliente extends Thread {
         }
         this.manejadorEnvio = new ManejoEnvioMensajes(salidaDatos);
     }
-    
-    @Override
-    public void run() {
-        while (isRunning) {
-            try {
-                Object recibido = entradaDatos.readObject();
 
-                if (recibido instanceof Mensaje mensaje) {
-                    System.out.println("[CLIENTE] Mensaje recibido: " + mensaje.getContenido());
-                    procesarMensaje(mensaje);
+    public ManejoEnvioMensajes getManejadorEnvio() {
+        return manejadorEnvio;
+    }
+
+    public void setManejadorEnvio(ManejoEnvioMensajes manejadorEnvio) {
+        this.manejadorEnvio = manejadorEnvio;
+    }
+    
+      @Override
+    public void run() {
+        while(this.isRunning) {
+            try {
+                
+                Object objetoRecibido = this.entradaDatos.readObject();
+                
+                if (objetoRecibido instanceof Mensaje mensaje1) {
+                    mensaje = mensaje1;
+                } else if (objetoRecibido instanceof String) {
+                    String texto = (String) objetoRecibido;
+                    System.out.println("⚠ Se recibió un String: " + texto);
+                }else if (objetoRecibido instanceof TipoMensaje) {
+                    TipoMensaje tipo = (TipoMensaje) objetoRecibido;
+                    System.out.println("⚠ Se recibió un TipoMensaje: " + tipo.name());
+                }else {
+                    System.out.println("el objeto que se recibio no funka");
+                    continue;
                 }
+                
+                if (mensaje.getTipo() == null) {
+                    System.out.println("Mensaje recibido con tipo null");
+                    continue;
+                }
+                
+                switch (mensaje.getTipo()) {
+                    case ASIGNACION_NOMBRE:
+                        //Todo: pasar esto a una clase que lo pueda manejar bien guapo
+                        cliente.setNombre((String)mensaje.getContenido());
+                        cliente.getPlayer().setNombre((String)mensaje.getContenido());
+                        System.out.println("Soy" + cliente.getNombre());
+                        break;
+                    case INICIO_PARTIDA:
+                        System.out.println("Soy el jugador =" +cliente.getNombre()+" y estoy listo para la partida" );
+                        break;
+                        
+                    default:
+                        throw new AssertionError();
+                }
+
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println("[CLIENTE] Error en la comunicación: " + e.getMessage());
+                System.out.println("[SERVIDOR] Error: " + e.getMessage());
                 cerrarConexion();
                 isRunning = false;
             }

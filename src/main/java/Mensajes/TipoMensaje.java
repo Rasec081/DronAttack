@@ -12,6 +12,9 @@ import java.io.Serializable;
  */
 public enum TipoMensaje implements Serializable{
     CONEXION,
-    DESCONEXION
+    DESCONEXION,
+    MAPA_COMPLETO,
+    ASIGNACION_NOMBRE,
+    INICIO_PARTIDA
 
 }

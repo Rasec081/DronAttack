@@ -21,7 +21,8 @@ public class Servidor {
     private ServerSocket servidor;
     private ArrayList<ThreadServidor> clientesAceptados;
     private ConexionServidorThread conexionsThread;
-
+    private final GameManager gameManager = new GameManager(this);
+    
     public Servidor(){
         this.clientesAceptados = new ArrayList<>();
         conectar();
@@ -45,6 +46,10 @@ public class Servidor {
         this.clientesAceptados = clientesAceptados;
     }
     
+    public GameManager getGameManager() {
+        return gameManager;
+    }
+    
     public void conectar(){
         try {
             servidor = new ServerSocket(PORT);
@@ -63,6 +68,19 @@ public class Servidor {
                     System.out.println("ERROR AL ENVIAR EL MENSAJE DESDE EL SERVER" + mensaje.getContenido());
                 }
             }
+        }
+    }
+    
+
+    // Enviar por índice (posición 0 = Jugador 1, posición 1 = Jugador 2)
+    public void enviarA(int indice, Mensaje mensaje) throws IOException {
+        if (indice < clientesAceptados.size()) {
+            try {
+                 clientesAceptados.get(indice).getSalidaDatos().writeObject(mensaje);
+                 clientesAceptados.get(indice).getSalidaDatos().flush();
+            } catch (IOException ex) {
+                System.out.println("ERROR AL ENVIAR EL MENSAJE DESDE EL SERVER" + mensaje.getContenido());
+            }        
         }
     }
     

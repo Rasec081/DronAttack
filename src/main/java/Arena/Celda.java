@@ -4,13 +4,15 @@
  */
 package Arena;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author gambo
  */
 
-public class Celda {
+public class Celda implements Serializable {
     private TipoCelda tipo;
 
     public Celda() {

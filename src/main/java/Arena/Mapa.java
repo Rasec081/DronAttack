@@ -4,11 +4,13 @@
  */
 package Arena;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gambo
  */
-public class Mapa {
+public class Mapa implements Serializable {
     private final int FILAS;
     private final int COLUMNAS;
     private final Celda[][] celdas;

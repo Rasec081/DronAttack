@@ -4,11 +4,13 @@
  */
 package Arena;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gambo
  */
-public enum TipoCelda {
+public enum TipoCelda implements Serializable {
 
     VACIA(null),
     NIEBLA("/Imagenes/niebla.png"),
