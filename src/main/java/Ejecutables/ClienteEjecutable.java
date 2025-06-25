@@ -22,7 +22,7 @@ public class ClienteEjecutable {
         } else return; // Aqui lo que puede ir es como una mini pantallita de servidor lleno
             
         
-        pantalla = new PantallaUsuario();
+        pantalla = new PantallaUsuario(cliente);
         pantalla.setVisible(true); 
     }
     

@@ -61,15 +61,27 @@ public class ThreadServidor extends Thread{
         this.salidaDatos = salidaDatos;
     }
     
-    
     @Override
-    public void run() {
-        Mensaje mensaje;
-        System.out.println("HOla");
-        
-        while (isRunning) {
+public void run() {
+    while (isRunning) {
+        try {
+            Object recibido = entradaDatos.readObject();
+
+            if (recibido instanceof Mensaje mensaje) {
+                System.out.println("[SERVIDOR] Recibido de cliente: " + mensaje.getContenido());
+
+                // Transmitir a todos los demás
+                server.transmision(mensaje);
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("[SERVIDOR] Error: " + e.getMessage());
+            cerrarConexion();
+            isRunning = false;
         }
     }
+}
+    
     
     private void cerrarConexion() {
     try {

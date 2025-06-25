@@ -6,6 +6,7 @@ package Usuario;
 
 import Arena.Mapa;
 import Arena.TipoCelda;
+import Cliente.Cliente;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
@@ -40,7 +41,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
     /**
      * Creates new form PantallaCliente
      */
-    public PantallaUsuario() {
+    public PantallaUsuario(Cliente cliente) {
         initComponents();
         setTitle("DronAttack");
         setLocationRelativeTo(null);
@@ -58,7 +59,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
         // Configurar el JTextArea como terminal
         configurarTerminal();
         
-        this.controlador = new ClienteController(this, "Jugador1");
+        this.controlador = new ClienteController(this, cliente);//pasaler el cliente que recibimos por referencia
         inicializarMapasVisuales();
         actualizarMapaPropio(controlador.getJugador().getMapa());
         ponerNieblaEnemigo();

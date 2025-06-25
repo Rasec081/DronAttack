@@ -1,5 +1,6 @@
 package Cliente;
 
+import Mensajes.Mensaje;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -27,9 +28,32 @@ public class ThreadCliente extends Thread {
     
     @Override
     public void run() {
-        while(this.isRunning) {
+         while (isRunning) {
+        try {
+            Object recibido = entradaDatos.readObject();
+
+            if (recibido instanceof Mensaje mensaje) {
+                System.out.println("[CLIENTE] Mensaje recibido: " + mensaje.getContenido());
+                // Aquí iría lógica como actualizar mapa, imprimir alerta, etc.
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("[CLIENTE] Error en la comunicación: " + e.getMessage());
+            cerrarConexion();
+            isRunning = false;
         }
     }
+    }
+    
+    
+    public void enviarMensaje(Mensaje mensaje) {
+    try {
+        salidaDatos.writeObject(mensaje);
+        salidaDatos.flush();
+    } catch (IOException e) {
+        System.out.println("[CLIENTE] Error al enviar mensaje: " + e.getMessage());
+    }
+}
+    
     
     public void detener() {
         this.isRunning = false;
