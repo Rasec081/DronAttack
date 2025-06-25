@@ -4,6 +4,7 @@
  */
 package Comandos;
 
+import Cliente.Cliente;
 import Player.Player;
 import Usuario.PantallaUsuario;
 
@@ -13,11 +14,11 @@ import Usuario.PantallaUsuario;
  */
 public class ScanCommand implements ICommand {
     private static final String COMMAND_NAME = "Scan"; 
-    private Player jugador;
+    private Cliente cliente;
     private PantallaUsuario vista;
     
-    public ScanCommand(Player jugador, PantallaUsuario vista) {
-        this.jugador = jugador;
+    public ScanCommand(Cliente cliente, PantallaUsuario vista) {
+        this.cliente = cliente;
         this.vista = vista;
     }
 

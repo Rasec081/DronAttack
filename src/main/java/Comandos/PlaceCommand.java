@@ -8,6 +8,7 @@ import Arena.Celda;
 import Arena.Mapa;
 import Arena.TipoCelda;
 import static Arena.TipoCelda.CUARTEL;
+import Cliente.Cliente;
 import Estructuras.Cuartel;
 import Estructuras.DepositoDeArmas;
 import Estructuras.Estructuras;
@@ -23,11 +24,11 @@ import java.awt.Point;
  */
 public class PlaceCommand extends BaseCommand{
     public static final String COMMAND_NAME = "PLACE";
-    private Player jugador;
+    private Cliente cliente;
     private PantallaUsuario vista;
 
-    public PlaceCommand(Player jugador, PantallaUsuario vista) {
-        this.jugador = jugador;
+    public PlaceCommand(Cliente cliente, PantallaUsuario vista) {
+        this.cliente = cliente;
         this.vista = vista;
     }
 
@@ -52,12 +53,12 @@ public class PlaceCommand extends BaseCommand{
             int y = Integer.parseInt(args[3]); 
 
             // Verificar si las coordenadas están dentro del mapa
-            if (!jugador.getMapa().estaDentro(x, y)) {
+            if (!cliente.getPlayer().getMapa().estaDentro(x, y)) {
                 System.out.println("Coordenadas fuera del mapa.");
                 return;
             }
 
-            Celda celda = jugador.getMapa().getCelda(x, y);
+            Celda celda = cliente.getPlayer().getMapa().getCelda(x, y);
             if (!celda.estaVacia()) {
                 System.out.println("Ya hay algo en esa celda.");
                 return;
@@ -72,13 +73,13 @@ public class PlaceCommand extends BaseCommand{
             }
             
             //Aca añadimos la estructura
-            jugador.getMapa().getCelda(x, y).setTipo(estructura);
+            cliente.getPlayer().getMapa().getCelda(x, y).setTipo(estructura);
             Estructuras struct = crearEstructura(estructura, new Point(x, y));
-            jugador.getEstructuras().add(struct);
+            cliente.getPlayer().getEstructuras().add(struct);
             
 
             vista.mostrarRespuestaComando("Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
-            vista.actualizarMapaPropio(jugador.getMapa());
+            vista.actualizarMapaPropio(cliente.getPlayer().getMapa());
 
         } catch (NumberFormatException e) {
             vista.mostrarRespuestaComando("Comando no funciono");

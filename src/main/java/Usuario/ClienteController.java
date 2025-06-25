@@ -25,7 +25,7 @@ public class ClienteController {
         this.commandManager = CommandManager.getInstance(); // el controlador de comandos
         
         //aca llamamos/creamos a factory (se implemento así para implmenetar el commandFactory y que quede más ordenado)
-        new CommandFactory(cliente.getPlayer(), vista);
+        new CommandFactory(cliente, vista);
     }
     
     private void configurarObservers() {

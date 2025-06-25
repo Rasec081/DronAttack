@@ -4,6 +4,7 @@
  */
 package Comandos;
 
+import Cliente.Cliente;
 import Player.Player;
 import Usuario.PantallaUsuario;
 
@@ -13,11 +14,11 @@ import Usuario.PantallaUsuario;
  */
 public class MoveCommand implements ICommand {
     private static final String COMMAND_NAME = "Move"; 
-    private Player jugador;
+    private Cliente cliente;
     private PantallaUsuario vista;
     
-    public MoveCommand(Player jugador, PantallaUsuario vista) {
-        this.jugador = jugador;
+    public MoveCommand(Cliente cliente, PantallaUsuario vista) {
+        this.cliente = cliente;
         this.vista = vista;
     }
 
