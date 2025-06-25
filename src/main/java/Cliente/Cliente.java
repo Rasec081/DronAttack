@@ -4,6 +4,7 @@
  */
 package Cliente;
 
+import Player.Player;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -18,10 +19,11 @@ public class Cliente {
     private String nombre;
     private Socket socket;
     private ThreadCliente threadCliente;
+    private Player player; 
 
 
     public Cliente() {
-        
+        this.player = new Player("Player 1");
     }
 
     public String getNombre() {
@@ -31,6 +33,15 @@ public class Cliente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
     
     // -----------CONEXION CON EL SERVIDOR-----------
     
