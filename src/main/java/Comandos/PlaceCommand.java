@@ -14,9 +14,14 @@ import Estructuras.DepositoDeArmas;
 import Estructuras.Estructuras;
 import Estructuras.Radar;
 import Estructuras.TorreDeComunicacion;
+import Mensajes.Mensaje;
+import Mensajes.TipoMensaje;
 import Player.Player;
 import Usuario.PantallaUsuario;
 import java.awt.Point;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,12 +45,20 @@ public class PlaceCommand extends BaseCommand{
 
     @Override
     public void execute(String[] args) {
+        Player player = cliente.getPlayer();
         // Verificar que hay suficientes argumentos
         if (args.length < 4) {
             System.out.println("Error: Faltan argumentos. Uso: place <estructura> <x> <y>");
             return;
         }
-
+        
+        if (player.tieneCuatroEstructuras()) {
+            vista.mostrarRespuestaComando("Ya colocaste todas las estructuras.");
+            return;
+        }
+        
+        //no se si validar que ya emepzo el juego, porque en teoria con las 4 estructuras basta
+        
         try {
             // Extraer y parsear los argumentos
             String tipoEstructura = args[1];  
@@ -72,6 +85,13 @@ public class PlaceCommand extends BaseCommand{
                 return;
             }
             
+            // ❌ Estructura repetida
+            if (player.tieneEstructuraDeTipo(estructura)) {
+                vista.mostrarRespuestaComando("Ya colocaste una estructura de tipo " + tipoEstructura);
+                return;
+            }
+
+            
             //Aca añadimos la estructura
             cliente.getPlayer().getMapa().getCelda(x, y).setTipo(estructura);
             Estructuras struct = crearEstructura(estructura, new Point(x, y));
@@ -80,10 +100,20 @@ public class PlaceCommand extends BaseCommand{
 
             vista.mostrarRespuestaComando("Estructura " + tipoEstructura + " colocada en (" + x + ", " + y + ")");
             vista.actualizarMapaPropio(cliente.getPlayer().getMapa());
-
+            
+            
+            // ✅ Si es la cuarta estructura: enviar mapa al servidor
+            if (player.tieneCuatroEstructuras()) {
+                Mensaje mensaje = new Mensaje(player.getNombre(), TipoMensaje.MAPA_COMPLETO, player.getMapa());
+                cliente.getThreadCliente().getManejadorEnvio().enviarMensaje(mensaje);
+                vista.mostrarRespuestaComando("Mapa completo enviado al servidor. Esperando al otro jugador...");
+            }
         } catch (NumberFormatException e) {
             vista.mostrarRespuestaComando("Comando no funciono");
             System.out.println("Error: Las coordenadas deben ser números enteros");
+        } catch (IOException ex) {
+            System.out.println("Algo falló desde el comando place");
+            ex.printStackTrace();
         }
     }
     

@@ -41,8 +41,15 @@ public class Cliente {
     public void setPlayer(Player player) {
         this.player = player;
     }
-    
-    
+
+    public ThreadCliente getThreadCliente() {
+        return threadCliente;
+    }
+
+    public void setThreadCliente(ThreadCliente threadCliente) {
+        this.threadCliente = threadCliente;
+    }
+        
     // -----------CONEXION CON EL SERVIDOR-----------
     
     public boolean probarConexion() {

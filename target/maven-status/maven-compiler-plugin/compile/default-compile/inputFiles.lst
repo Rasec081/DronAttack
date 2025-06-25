@@ -1,36 +1,38 @@
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Arena\Celda.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Arena\Mapa.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Arena\TipoCelda.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Cliente\Cliente.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Cliente\ThreadCliente.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\com\mycompany\proyecto3\Proyecto3.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\BaseCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\ChatCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\CommandFactory.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\CommandManager.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\ErrorCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\HelpCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\ICommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\MoveCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\NotFoundCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\PlaceCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\ScanCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\SendCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Comandos\StatusCommand.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Configuracion\ConfiguracionJuego.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Ejecutables\ClienteEjecutable.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Ejecutables\ServidorEjecutable.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Estructuras\Cuartel.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Estructuras\DepositoDeArmas.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Estructuras\Estructuras.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Estructuras\Radar.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Estructuras\TorreDeComunicacion.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Mensajes\Mensaje.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Mensajes\TipoMensaje.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Pantallas\PantallaServidor.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Player\Player.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Servidor\ConexionServidorThread.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Servidor\Servidor.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Servidor\ThreadServidor.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Usuario\ClienteController.java
-C:\Users\gambo\Desktop\(3)Semestre 1-2025\Programación Orientada a Objetos\Proyectos\Proyecto Programado 3\Proyecto3\src\main\java\Usuario\PantallaUsuario.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Arena\Celda.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Arena\Mapa.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Arena\TipoCelda.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Cliente\Cliente.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Cliente\ManejoEnvioMensajes.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Cliente\ThreadCliente.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\com\mycompany\proyecto3\Proyecto3.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\BaseCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\ChatCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\CommandFactory.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\CommandManager.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\ErrorCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\HelpCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\ICommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\MoveCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\NotFoundCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\PlaceCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\ScanCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\SendCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\StatusCommand.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Configuracion\ConfiguracionJuego.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Ejecutables\ClienteEjecutable.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Ejecutables\ServidorEjecutable.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Estructuras\Cuartel.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Estructuras\DepositoDeArmas.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Estructuras\Estructuras.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Estructuras\Radar.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Estructuras\TorreDeComunicacion.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Mensajes\Mensaje.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Mensajes\TipoMensaje.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Pantallas\PantallaServidor.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Player\Player.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\ConexionServidorThread.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\GameManager.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\Servidor.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\ThreadServidor.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Usuario\ClienteController.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Usuario\PantallaUsuario.java

@@ -151,4 +151,18 @@ public class Player {
         }
         return false;
     }
+    
+    public boolean tieneEstructuraDeTipo(TipoCelda tipo) {
+        for (Estructuras e : estructuras) {
+            if (e.getTipo() == tipo && e.isIsActive()) {
+                return true;
+            }
+        }
+        return false;
+        }
+
+    public boolean tieneCuatroEstructuras() {
+        return estructuras.size() == 4;
+        }
+
 }

@@ -4,6 +4,7 @@
  */
 package Servidor;
 
+import Arena.Mapa;
 import Mensajes.Mensaje;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -63,15 +64,19 @@ public class ThreadServidor extends Thread{
     
     @Override
     public void run() {
+        
         while (isRunning) {
             try {
-                Object recibido = entradaDatos.readObject();
-
-                if (recibido instanceof Mensaje mensaje) {
-                    System.out.println("[SERVIDOR] Recibido de cliente: " + mensaje.getContenido());
-
-                    // Transmitir a todos los demás
-                    server.transmision(mensaje);
+                //Object recibido = (Mensaje)entradaDatos.readObject();
+                Mensaje msj = (Mensaje)entradaDatos.readObject(); 
+                
+                switch (msj.getTipo()) {
+                    case MAPA_COMPLETO:
+                        server.getGameManager().procesarMapa(msj.getEnviador(),(Mapa)msj.getContenido());
+                        break;
+                        
+                    default:
+                        throw new AssertionError();
                 }
 
             } catch (IOException | ClassNotFoundException e) {
