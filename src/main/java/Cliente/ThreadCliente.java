@@ -10,8 +10,10 @@ public class ThreadCliente extends Thread {
     private volatile boolean isRunning = true; // Cambiado a volatile para mejor manejo de hilos
     private final Socket socket;
     private final Cliente cliente;
+    private final ManejoEnvioMensajes manejadorEnvio;
     private ObjectInputStream entradaDatos;
     private ObjectOutputStream salidaDatos;
+    
 
     public ThreadCliente(Socket socket, Cliente cliente) {
         this.socket = socket;
@@ -20,39 +22,39 @@ public class ThreadCliente extends Thread {
             salidaDatos = new ObjectOutputStream(socket.getOutputStream());
             salidaDatos.flush();
             entradaDatos = new ObjectInputStream(socket.getInputStream());
+            
+            
         } catch (IOException ex) {
             this.isRunning = false;
             cerrarConexion();
         }
+        this.manejadorEnvio = new ManejoEnvioMensajes(salidaDatos);
     }
     
     @Override
     public void run() {
-         while (isRunning) {
-        try {
-            Object recibido = entradaDatos.readObject();
+        while (isRunning) {
+            try {
+                Object recibido = entradaDatos.readObject();
 
-            if (recibido instanceof Mensaje mensaje) {
-                System.out.println("[CLIENTE] Mensaje recibido: " + mensaje.getContenido());
-                // Aquí iría lógica como actualizar mapa, imprimir alerta, etc.
+                if (recibido instanceof Mensaje mensaje) {
+                    System.out.println("[CLIENTE] Mensaje recibido: " + mensaje.getContenido());
+                    procesarMensaje(mensaje);
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("[CLIENTE] Error en la comunicación: " + e.getMessage());
+                cerrarConexion();
+                isRunning = false;
             }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("[CLIENTE] Error en la comunicación: " + e.getMessage());
-            cerrarConexion();
-            isRunning = false;
         }
     }
-    }
     
     
-    public void enviarMensaje(Mensaje mensaje) {
-    try {
-        salidaDatos.writeObject(mensaje);
-        salidaDatos.flush();
-    } catch (IOException e) {
-        System.out.println("[CLIENTE] Error al enviar mensaje: " + e.getMessage());
+    private void procesarMensaje(Mensaje mensaje) {
+        // Aquí iría la lógica para manejar diferentes tipos de mensajes
+        // Podrías incluso crear una clase MessageHandler separada
+//        cliente.getPlayer().actualizarEstado(mensaje); // Ejemplo hipotético
     }
-}
     
     
     public void detener() {
