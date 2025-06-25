@@ -4,6 +4,7 @@
  */
 package Comandos;
 
+import Cliente.Cliente;
 import Player.Player;
 
 /**
@@ -12,10 +13,10 @@ import Player.Player;
  */
 public class ChatCommand extends BaseCommand {
     private static final String COMMAND_NAME = "Help";
-    private Player jugador;
+    private Cliente cliente;
 
-    public ChatCommand(Player jugador) {
-        this.jugador = jugador;
+    public ChatCommand(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     @Override
