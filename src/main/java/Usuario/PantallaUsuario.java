@@ -30,7 +30,6 @@ import javax.swing.ImageIcon;
  */
 public class PantallaUsuario extends javax.swing.JFrame {
     private static final String PROMPT = ">> "; // Símbolo de prompt
-    private boolean isEditingPrompt = false;
     private int lastPromptPosition = 0; // Guarda la posición del último prompt
     private final int MAPA_ANCHO = 10;
     private final int MAPA_ALTO= 10;

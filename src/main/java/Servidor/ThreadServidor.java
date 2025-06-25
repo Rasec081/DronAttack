@@ -62,34 +62,34 @@ public class ThreadServidor extends Thread{
     }
     
     @Override
-public void run() {
-    while (isRunning) {
-        try {
-            Object recibido = entradaDatos.readObject();
+    public void run() {
+        while (isRunning) {
+            try {
+                Object recibido = entradaDatos.readObject();
 
-            if (recibido instanceof Mensaje mensaje) {
-                System.out.println("[SERVIDOR] Recibido de cliente: " + mensaje.getContenido());
+                if (recibido instanceof Mensaje mensaje) {
+                    System.out.println("[SERVIDOR] Recibido de cliente: " + mensaje.getContenido());
 
-                // Transmitir a todos los demás
-                server.transmision(mensaje);
+                    // Transmitir a todos los demás
+                    server.transmision(mensaje);
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("[SERVIDOR] Error: " + e.getMessage());
+                cerrarConexion();
+                isRunning = false;
             }
-
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("[SERVIDOR] Error: " + e.getMessage());
-            cerrarConexion();
-            isRunning = false;
         }
     }
-}
     
     
     private void cerrarConexion() {
-    try {
-        if (salidaDatos != null) salidaDatos.close();
-        if (entradaDatos != null) entradaDatos.close();
-        if (socket != null) socket.close();
-    } catch (IOException e) {
-        System.err.println("Error al cerrar recursos: " + e.getMessage());
+        try {
+            if (salidaDatos != null) salidaDatos.close();
+            if (entradaDatos != null) entradaDatos.close();
+            if (socket != null) socket.close();
+        } catch (IOException e) {
+            System.err.println("Error al cerrar recursos: " + e.getMessage());
+        }
     }
-}
 }
