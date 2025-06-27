@@ -4,6 +4,7 @@
  */
 package Comandos;
 
+import Arena.TipoCelda;
 import Cliente.Cliente;
 import Player.Player;
 import Usuario.PantallaUsuario;
@@ -29,6 +30,9 @@ public class ScanCommand implements ICommand {
 
     @Override
     public void execute(String[] args) {
+        if(cliente.getPlayer().tieneEstructuraDeTipo(TipoCelda.RADAR)){
+            
+        }
         System.out.println("Soy "+COMMAND_NAME+" y digamos que estoy haciendo algo");
     }
 }

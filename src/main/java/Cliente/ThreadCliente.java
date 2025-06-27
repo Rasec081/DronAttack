@@ -16,11 +16,13 @@ public class ThreadCliente extends Thread {
     private  ManejoEnvioMensajes manejadorEnvio;
     private ObjectInputStream entradaDatos;
     private ObjectOutputStream salidaDatos;
+    private ClienteManager manager;
     Mensaje mensaje;
 
     public ThreadCliente(Socket socket, Cliente cliente) {
         this.socket = socket;
         this.cliente = cliente;
+        this.manager = new ClienteManager(cliente);
         try {
             salidaDatos = new ObjectOutputStream(socket.getOutputStream());
             salidaDatos.flush();
@@ -69,13 +71,15 @@ public class ThreadCliente extends Thread {
                 
                 switch (mensaje.getTipo()) {
                     case ASIGNACION_NOMBRE:
-                        //Todo: pasar esto a una clase que lo pueda manejar bien guapo
-                        cliente.setNombre((String)mensaje.getContenido());
-                        cliente.getPlayer().setNombre((String)mensaje.getContenido());
-                        System.out.println("Soy" + cliente.getNombre());
+                        manager.asignarNombre(mensaje);
+                        
                         break;
                     case INICIO_PARTIDA:
                         System.out.println("Soy el jugador =" +cliente.getNombre()+" y estoy listo para la partida" );
+                        break;
+                        
+                    case TURNO:
+                        manager.asignarTurno(mensaje);
                         break;
                         
                     default:

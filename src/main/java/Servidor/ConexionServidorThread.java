@@ -40,9 +40,15 @@ public class ConexionServidorThread extends Thread {
                     salidaTemporal.writeUTF("ACEPTADO");
 
                     // Crear nuevo hilo para lo que envie el cliente
-                    ThreadServidor ts = new ThreadServidor(socket, servidor);
-                    ts.start();
+                    int num = servidor.getClientesAceptados().size()+1;
+                    String nombre = "Jugador "+ num;
+                    
+                    ThreadServidor ts = new ThreadServidor(socket, servidor,nombre);
+                    
                     servidor.getClientesAceptados().add(ts);
+                    
+                    ts.start();
+                    
                     System.out.println("Cliente Aceptado");
                 }
 

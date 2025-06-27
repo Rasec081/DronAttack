@@ -15,6 +15,7 @@ public enum TipoMensaje implements Serializable{
     DESCONEXION,
     MAPA_COMPLETO,
     ASIGNACION_NOMBRE,
-    INICIO_PARTIDA
+    INICIO_PARTIDA,
+    TURNO,
 
 }

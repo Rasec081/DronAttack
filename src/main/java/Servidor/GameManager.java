@@ -39,16 +39,7 @@ public class GameManager {
         //una vez que lo guardemos le enviamos un mensaje a este para
         //setearle el nuevo nombre
         mapas.put(nombre, mapa);
-        int numero = mapas.size(); // 1 o 2
-        String nombreLogico = "Jugador " + numero;
-        
-
-        System.out.println("[SERVIDOR] " + nombre + " asignado como " + nombreLogico);
-
-        // ✅ Pedirle al servidor que le envíe el rol
-        Mensaje mRol = new Mensaje("Server", TipoMensaje.ASIGNACION_NOMBRE, nombreLogico);
-        servidor.enviarA(numero - 1, mRol); // índice 0 o 1
-        
+        System.out.println("el clinete"+ nombre+" envio el mapa");
         System.out.println("el size de mapas es de: "+ mapas.size());
         if (mapas.size() == 2) {
             iniciarPartida();
@@ -67,6 +58,25 @@ public class GameManager {
         } catch (IOException ex) {
             Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if (i == 0){
+            //aca enviamos el mensaje de que usted empieza 
+            //turno en true
+            Mensaje turno = new Mensaje("server", TipoMensaje.TURNO, true);
+            try {
+                servidor.enviarA(i, turno);
+            } catch (IOException ex) {
+                System.out.println(ex + "fallo al enviar el mensaje de turno");
+            }
+        }else{
+            //aca le enviamos el mensaje de que turno va a estar en false
+            Mensaje turno = new Mensaje("server", TipoMensaje.TURNO, false);
+            try {
+                servidor.enviarA(i, turno);
+            } catch (IOException ex) {
+                System.out.println(ex + "fallo al enviar el mensaje de turno");
+                }
+            }
+        
+        }
     }
-}
 }

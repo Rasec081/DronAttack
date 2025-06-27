@@ -29,6 +29,15 @@ public class MoveCommand implements ICommand {
 
     @Override
     public void execute(String[] args) {
+        //segun yo, este comando lo que va a hacer es trasladar una structura a
+        //otra casilla
+        
+        /*
+        para esto debe de recibir estructura,posicion
+        y modificar la matriz (verificando si el espacion aun no le cae bombas)
+        una vez que la tiene modificada se la vuelve a 
+        enviar al server para que este la actualice
+        */
         System.out.println("Soy "+COMMAND_NAME+" y digamos que estoy haciendo algo");
     }
 }
