@@ -41,4 +41,5 @@ Ejecutables\ServidorEjecutable.class
 Player\Player.class
 Arena\Mapa$1.class
 Comandos\BaseCommand.class
+Cliente\ClienteManager.class
 Comandos\CommandFactory.class

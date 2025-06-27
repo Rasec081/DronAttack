@@ -18,7 +18,8 @@ public enum TipoCelda implements Serializable {
     RADAR("/Imagenes/radar.png"),
     DEPOSITO("/Imagenes/deposito.png"),
     TORRE("/Imagenes/torre.png"),
-    DESTRUIDA("/Imagenes/destruido.png");
+    DESTRUIDA("/Imagenes/destruido.png"),
+    ATACADO("/Imagenes/atacado.jpg");
     
     private final String ruta;
     private TipoCelda(String ruta) {

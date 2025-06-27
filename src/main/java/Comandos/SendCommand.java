@@ -29,6 +29,9 @@ public class SendCommand implements ICommand {
 
     @Override
     public void execute(String[] args) {
+        if(cliente.getPlayer().isTurno()){
+            
+        }
         System.out.println("Soy "+COMMAND_NAME+" y digamos que estoy haciendo algo");
     }
 }

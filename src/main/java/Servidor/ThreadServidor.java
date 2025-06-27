@@ -6,6 +6,7 @@ package Servidor;
 
 import Arena.Mapa;
 import Mensajes.Mensaje;
+import Mensajes.TipoMensaje;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -25,13 +26,18 @@ public class ThreadServidor extends Thread{
     private boolean isRunning = true;
     
 
-    public ThreadServidor(Socket socket, Servidor server) {
+    public ThreadServidor(Socket socket, Servidor server, String nombre) {
         this.socket = socket;
         this.server = server;
+        this.nombre = nombre;
         try {
             salidaDatos = new ObjectOutputStream(socket.getOutputStream());
             salidaDatos.flush();
             entradaDatos = new ObjectInputStream(socket.getInputStream());
+            
+             // ✅ Enviar inmediatamente el nombre lógico al cliente
+            Mensaje m = new Mensaje("Servidor", TipoMensaje.ASIGNACION_NOMBRE, nombre);
+            enviarMensaje(m);
         } catch (IOException ex) {
             isRunning=false;
             cerrarConexion();
@@ -60,6 +66,15 @@ public class ThreadServidor extends Thread{
 
     public void setSalidaDatos(ObjectOutputStream salidaDatos) {
         this.salidaDatos = salidaDatos;
+    }
+    
+    public void enviarMensaje(Mensaje mensaje) {
+        try {
+            salidaDatos.writeObject(mensaje);
+            salidaDatos.flush();
+        } catch (IOException e) {
+            System.err.println("Error al enviar mensaje a " + nombre);
+        }
     }
     
     @Override
