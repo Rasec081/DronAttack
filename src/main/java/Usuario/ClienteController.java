@@ -73,6 +73,10 @@ public class ClienteController {
         return cliente.getPlayer();
     }
     
+    public PantallaUsuario getVista(){
+        return vista;
+    }
+    
     private void error(String[] partes){
         String nombreComando = "Error";
         String[] args = new String[partes.length];

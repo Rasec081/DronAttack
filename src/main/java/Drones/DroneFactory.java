@@ -23,7 +23,8 @@ public class DroneFactory {
             case "multishot":
                 return new MultishotDrone(objetivo);
             default:
-                throw new IllegalArgumentException("Tipo de dron no reconocido: " + tipo);
+                System.out.println("Tipo de dron no reconocido: " + tipo);
+                return null;
         }
     }
 }

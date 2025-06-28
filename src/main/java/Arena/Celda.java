@@ -14,6 +14,7 @@ import java.io.Serializable;
 
 public class Celda implements Serializable {
     private TipoCelda tipo;
+    private boolean descubierta = false;
 
     public Celda() {
         this.tipo = TipoCelda.VACIA; // por defecto
@@ -38,4 +39,14 @@ public class Celda implements Serializable {
     public boolean estaDestruida() {
         return tipo == TipoCelda.DESTRUIDA;
     }
+
+    public boolean isDescubierta() {
+        return descubierta;
+    }
+
+    public void setDescubierta(boolean descubierta) {
+        this.descubierta = descubierta;
+    }
+    
+    
 }

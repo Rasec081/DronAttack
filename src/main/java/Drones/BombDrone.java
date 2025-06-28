@@ -23,7 +23,7 @@ public class BombDrone implements IDron{
 
     @Override
     public ArrayList <Point> atacar(Mapa mapaEnemigo){
-        if(mapaEnemigo.getCelda(punto.x, punto.y).getTipo() != TipoCelda.ATACADO){
+        if(mapaEnemigo.getCelda(punto.x, punto.y).getTipo() == TipoCelda.ATACADO){
             return null;
         }
         

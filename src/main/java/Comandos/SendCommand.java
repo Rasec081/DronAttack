@@ -12,6 +12,7 @@ import Mensajes.TipoMensaje;
 import Player.Player;
 import Usuario.PantallaUsuario;
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
@@ -70,12 +71,13 @@ public class SendCommand implements ICommand {
 
         // ✅ Descontar energía
         player.restarEnergia(dron.getEnergia());
-
+        ArrayList <Point> lista = dron.atacar(cliente.getPlayer().getMapaEnemigo());
+        System.out.println(lista);
         // ✅ Enviar al servidor un mensaje con el tipo de dron y la posición
         Mensaje ataque = new Mensaje(
                 player.getNombre(),
                 TipoMensaje.ATAQUE,
-                dron.atacar(cliente.getPlayer().getMapaEnemigo())
+                lista
         );
 
         try {

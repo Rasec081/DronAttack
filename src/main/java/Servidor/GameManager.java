@@ -129,7 +129,9 @@ public class GameManager {
 
             try {
                 servidor.enviarA(nombreAIndice(atacante), updateAtacante);
+                
                 servidor.enviarA(nombreAIndice(defensor), updateDefensor);
+                
             } catch (IOException ex) {
                 System.out.println("Fallo al enviar actualizaciones de mapa: " + ex.getMessage());
             }
@@ -144,6 +146,15 @@ public class GameManager {
                 System.out.println("Fallo al enviar energía o notificaciones: " + ex.getMessage());
             }
         } 
+        
+        try {
+            servidor.enviarA(nombreAIndice(defensor),
+                    new Mensaje("Servidor", TipoMensaje.TURNO, true));
+            servidor.enviarA(nombreAIndice(atacante), 
+                        new Mensaje("Servidor", TipoMensaje.TURNO, false));
+        } catch (IOException ex) {
+            System.out.println("fallo extrepitosamente al cambia de turno");
+        }
     }
     
     private int nombreAIndice(String nombre) {
