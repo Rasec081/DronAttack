@@ -31,6 +31,7 @@ import javax.swing.ImageIcon;
 public class PantallaUsuario extends javax.swing.JFrame {
     private static final String PROMPT = ">> "; // Símbolo de prompt
     private int lastPromptPosition = 0; // Guarda la posición del último prompt
+    private int lastPromptPositionChat = 0;
     private final int MAPA_ANCHO = 10;
     private final int MAPA_ALTO= 10;
     private JLabel[][] matrizMapaPropio;
@@ -201,6 +202,12 @@ public class PantallaUsuario extends javax.swing.JFrame {
         comandos.append("\n" + respuesta + "\n" + PROMPT);
         lastPromptPosition = comandos.getText().length();
         comandos.setCaretPosition(lastPromptPosition);
+    }
+    
+    public void mostrarMensajeChat(String mensaje){
+        salidaChat.append( mensaje + "\n");
+        lastPromptPositionChat = salidaChat.getText().length();
+        salidaChat.setCaretPosition(lastPromptPositionChat);
     }
     
     public void ponerNieblaEnemigo(){   

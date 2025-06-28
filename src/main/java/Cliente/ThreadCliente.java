@@ -43,6 +43,16 @@ public class ThreadCliente extends Thread {
     public void setManejadorEnvio(ManejoEnvioMensajes manejadorEnvio) {
         this.manejadorEnvio = manejadorEnvio;
     }
+
+    public ClienteManager getManager() {
+        return manager;
+    }
+
+    public void setManager(ClienteManager manager) {
+        this.manager = manager;
+    }
+    
+    
     
       @Override
     public void run() {
@@ -80,6 +90,10 @@ public class ThreadCliente extends Thread {
                         
                     case TURNO:
                         manager.asignarTurno(mensaje);
+                        break;
+                    
+                    case CHAT_SERVER:
+                        manager.sendMsj(mensaje);
                         break;
                         
                     default:

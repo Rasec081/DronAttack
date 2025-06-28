@@ -53,6 +53,9 @@ public class CommandFactory {
         
         //Comando para cuando no se encuentra un comando
         commandManager.registrar("NotFound", new NotFoundCommand(vista));
+        
+        //comando de rendirse
+        commandManager.registrar("Surrender", new SurrenderCommand(cliente, vista));
     }
     
 }

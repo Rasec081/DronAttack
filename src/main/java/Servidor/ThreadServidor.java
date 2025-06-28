@@ -90,6 +90,10 @@ public class ThreadServidor extends Thread{
                         server.getGameManager().procesarMapa(msj.getEnviador(),(Mapa)msj.getContenido());
                         break;
                         
+                    case CHAT_USER:
+                        server.getGameManager().enviarMensajeChat(msj);
+                        break;
+                        
                     default:
                         throw new AssertionError();
                 }

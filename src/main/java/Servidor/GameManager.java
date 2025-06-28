@@ -79,4 +79,10 @@ public class GameManager {
         
         }
     }
+  
+    public void enviarMensajeChat(Mensaje mensaje) {
+        String contenido = (String) mensaje.getContenido();
+        Mensaje msj = new Mensaje("Server", TipoMensaje.CHAT_SERVER, contenido);
+        servidor.transmision(msj);
+  }
 }

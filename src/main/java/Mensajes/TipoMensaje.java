@@ -17,5 +17,8 @@ public enum TipoMensaje implements Serializable{
     ASIGNACION_NOMBRE,
     INICIO_PARTIDA,
     TURNO,
+    ATAQUE,
+    CHAT_USER,
+    CHAT_SERVER
 
 }
