@@ -5,9 +5,12 @@
 package Servidor;
 
 import Arena.Mapa;
+import Arena.TipoCelda;
 import Mensajes.Mensaje;
 import Mensajes.TipoMensaje;
+import java.awt.Point;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -79,4 +82,78 @@ public class GameManager {
         
         }
     }
+  
+    public void enviarMensajeChat(Mensaje mensaje) {
+        String contenido = (String) mensaje.getContenido();
+        Mensaje msj = new Mensaje("Server", TipoMensaje.CHAT_SERVER, contenido);
+        servidor.transmision(msj);
+  }
+    
+    public void manejarAtaque(Mensaje mensaje){
+        String atacante = mensaje.getEnviador();
+        ArrayList<Point> puntos = (ArrayList<Point>) mensaje.getContenido();
+
+        String defensor = null;
+        for (String nombre : mapas.keySet()) {
+            if (!nombre.equals(atacante)) {
+                defensor = nombre;
+                break;
+            }
+        }
+
+        if (defensor == null) return;
+        Mapa mapaEnemigo = mapas.get(defensor);
+        boolean huboImpacto = false;
+
+        for (Point punto : puntos) {
+            if (!mapaEnemigo.estaDentro(punto.x, punto.y)) continue;
+
+            TipoCelda tipo = mapaEnemigo.getCelda(punto.x, punto.y).getTipo();
+            boolean esEstructura = tipo == TipoCelda.CUARTEL || tipo == TipoCelda.RADAR ||
+                                   tipo == TipoCelda.TORRE || tipo == TipoCelda.DEPOSITO;
+            
+            TipoCelda enviar = TipoCelda.NIEBLA;
+            if (esEstructura) {
+                mapaEnemigo.setCelda(punto.x, punto.y, TipoCelda.DESTRUIDA);
+                enviar = TipoCelda.DESTRUIDA;
+                huboImpacto = true;
+            } else {
+                mapaEnemigo.setCelda(punto.x, punto.y, TipoCelda.ATACADO);
+                enviar=TipoCelda.ATACADO;
+            }
+            
+            PaqueteMapas paquete = new PaqueteMapas(punto, enviar);
+            // Actualización de mapas (se envía a ambos jugadores)
+            Mensaje updateAtacante = new Mensaje("Servidor", TipoMensaje.ACTUALIZAR_MAPA_ENEMIGO, paquete);
+            Mensaje updateDefensor = new Mensaje("Servidor", TipoMensaje.ACTUALIZAR_MAPA_PROPIO, paquete);
+
+            try {
+                servidor.enviarA(nombreAIndice(atacante), updateAtacante);
+                servidor.enviarA(nombreAIndice(defensor), updateDefensor);
+            } catch (IOException ex) {
+                System.out.println("Fallo al enviar actualizaciones de mapa: " + ex.getMessage());
+            }
+        }
+
+        // ✅ Bonificación y mensajes si hubo impacto
+        if (huboImpacto) {
+            try {
+                Mensaje bonus = new Mensaje("Servidor", TipoMensaje.ENERGIA_EXTRA, 30);
+                servidor.enviarA(nombreAIndice(atacante), bonus);
+            } catch (IOException ex) {
+                System.out.println("Fallo al enviar energía o notificaciones: " + ex.getMessage());
+            }
+        } 
+    }
+    
+    private int nombreAIndice(String nombre) {
+        int i = 0;
+        for (String n : mapas.keySet()) {
+            if (n.equals(nombre)) return i;
+            i++;
+        }
+        return -1;
+    }
+    
+    
 }

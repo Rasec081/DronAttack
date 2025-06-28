@@ -43,6 +43,16 @@ public class ThreadCliente extends Thread {
     public void setManejadorEnvio(ManejoEnvioMensajes manejadorEnvio) {
         this.manejadorEnvio = manejadorEnvio;
     }
+
+    public ClienteManager getManager() {
+        return manager;
+    }
+
+    public void setManager(ClienteManager manager) {
+        this.manager = manager;
+    }
+    
+    
     
       @Override
     public void run() {
@@ -81,7 +91,19 @@ public class ThreadCliente extends Thread {
                     case TURNO:
                         manager.asignarTurno(mensaje);
                         break;
-                        
+                    
+                    case CHAT_SERVER:
+                        manager.sendMsj(mensaje);
+                        break;
+                    case ACTUALIZAR_MAPA_ENEMIGO:
+                        manager.actualizarMapaEnemigo(mensaje);
+                        break;
+                    case ACTUALIZAR_MAPA_PROPIO:
+                        manager.actualizarMapaPropio(mensaje);
+                        break;
+                    case ENERGIA_EXTRA:
+                        manager.actualizarEnergia();
+                        break;
                     default:
                         throw new AssertionError();
                 }

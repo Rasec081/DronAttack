@@ -71,7 +71,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="estadisticasPnl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="timerLbl" min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -203,9 +203,16 @@
                   <Component id="estadisticasLbl" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
-              <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+              <Component id="energiaLbl" alignment="0" max="32767" attributes="0"/>
+              <Component id="estructurasLbl" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="mapaLbl" alignment="1" max="32767" attributes="0"/>
+                      <Component id="turnoLbl" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -213,12 +220,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="estadisticasLbl" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="energiaLbl" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel5" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="estructurasLbl" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="mapaLbl" min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="turnoLbl" min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -237,22 +246,28 @@
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Estad&#xed;sticas"/>
           </AccessibilityProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="energiaLbl">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="jLabel2"/>
+            <Property name="text" type="java.lang.String" value="Energia:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="estructurasLbl">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="jLabel2"/>
+            <Property name="text" type="java.lang.String" value="Estructuras:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="mapaLbl">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="jLabel2"/>
+            <Property name="text" type="java.lang.String" value="Mapa:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="turnoLbl">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Turno:"/>
           </Properties>
         </Component>
       </SubComponents>

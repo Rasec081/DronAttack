@@ -4,13 +4,19 @@ Comandos\PlaceCommand$1.class
 Usuario\PantallaUsuario$1.class
 Arena\Celda.class
 Comandos\StatusCommand.class
+Drones\SniperDrone.class
+Drones\DroneFactory.class
 Ejecutables\ClienteEjecutable.class
 Estructuras\Cuartel.class
+Usuario\GameListener.class
+Drones\MultishotDrone.class
 Comandos\ScanCommand.class
 Comandos\ErrorCommand.class
 Servidor\ThreadServidor$1.class
 Servidor\ConexionServidorThread.class
 Usuario\PantallaUsuario$2.class
+Comandos\SurrenderCommand.class
+Drones\BombDrone.class
 Comandos\ICommand.class
 Cliente\ThreadCliente.class
 Servidor\ThreadServidor.class
@@ -19,6 +25,7 @@ Mensajes\Mensaje.class
 Mensajes\TipoMensaje.class
 com\mycompany\proyecto3\Proyecto3.class
 Estructuras\Estructuras.class
+Servidor\PaqueteMapas.class
 Estructuras\TorreDeComunicacion.class
 Comandos\SendCommand.class
 Estructuras\DepositoDeArmas.class
@@ -41,5 +48,7 @@ Ejecutables\ServidorEjecutable.class
 Player\Player.class
 Arena\Mapa$1.class
 Comandos\BaseCommand.class
+Drones\IDron.class
 Cliente\ClienteManager.class
 Comandos\CommandFactory.class
+Drones\ExplosiveDrone.class

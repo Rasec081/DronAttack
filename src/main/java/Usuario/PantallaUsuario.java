@@ -28,9 +28,10 @@ import javax.swing.ImageIcon;
  *
  * @author gambo
  */
-public class PantallaUsuario extends javax.swing.JFrame {
+public class PantallaUsuario extends javax.swing.JFrame implements GameListener{
     private static final String PROMPT = ">> "; // Símbolo de prompt
     private int lastPromptPosition = 0; // Guarda la posición del último prompt
+    private int lastPromptPositionChat = 0;
     private final int MAPA_ANCHO = 10;
     private final int MAPA_ALTO= 10;
     private JLabel[][] matrizMapaPropio;
@@ -203,6 +204,12 @@ public class PantallaUsuario extends javax.swing.JFrame {
         comandos.setCaretPosition(lastPromptPosition);
     }
     
+    public void mostrarMensajeChat(String mensaje){
+        salidaChat.append( mensaje + "\n");
+        lastPromptPositionChat = salidaChat.getText().length();
+        salidaChat.setCaretPosition(lastPromptPositionChat);
+    }
+    
     public void ponerNieblaEnemigo(){   
         for (int y = 0; y < MAPA_ALTO; y++) {
                 for (int x = 0; x < MAPA_ANCHO; x++) {
@@ -249,6 +256,41 @@ public class PantallaUsuario extends javax.swing.JFrame {
         // Para mensajes del Observer
         comandos.append("[NOTIFICACIÓN] " + mensaje + "\n");
     }
+    
+    @Override
+    public void energiaActualizada(int energia) {
+        this.energiaLbl.setText("Energia: "+ energia);
+    }
+
+    @Override
+    public void estructurasActualizadas(int activas) {
+       this.estadisticasLbl.setText("Estructuras: "+ activas);
+    }
+
+    @Override
+    public void mapaActualizado() {
+        this.mapaLbl.setText("Mapa: ");
+    }
+
+    @Override
+    public void notificacion(String mensaje) {
+        this.mostrarNotificacion(mensaje);
+    }
+
+    @Override
+    public void turnoActualizado(boolean esMiTurno) {
+        this.turnoLbl.setText("Turno: "+esMiTurno);
+    }
+
+    @Override
+    public void impactosActualizados(int impactos) {
+        this.mapaLbl.setText("Impactos"+impactos);
+    }
+
+    @Override
+    public void zonasReveladasActualizadas(int cantidad) {
+        //this.panelEstado.setZonas(cantidad);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -270,9 +312,10 @@ public class PantallaUsuario extends javax.swing.JFrame {
         commandLbl = new javax.swing.JLabel();
         estadisticasPnl = new javax.swing.JPanel();
         estadisticasLbl = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        energiaLbl = new javax.swing.JLabel();
+        estructurasLbl = new javax.swing.JLabel();
+        mapaLbl = new javax.swing.JLabel();
+        turnoLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -331,14 +374,17 @@ public class PantallaUsuario extends javax.swing.JFrame {
         estadisticasLbl.setText("Estadisticas");
         estadisticasLbl.setOpaque(true);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("jLabel2");
+        energiaLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        energiaLbl.setText("Energia:");
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("jLabel2");
+        estructurasLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        estructurasLbl.setText("Estructuras:");
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("jLabel2");
+        mapaLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mapaLbl.setText("Mapa:");
+
+        turnoLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        turnoLbl.setText("Turno:");
 
         javax.swing.GroupLayout estadisticasPnlLayout = new javax.swing.GroupLayout(estadisticasPnl);
         estadisticasPnl.setLayout(estadisticasPnlLayout);
@@ -348,21 +394,28 @@ public class PantallaUsuario extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(estadisticasLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(energiaLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(estructurasLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(estadisticasPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(estadisticasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mapaLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(turnoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         estadisticasPnlLayout.setVerticalGroup(
             estadisticasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(estadisticasPnlLayout.createSequentialGroup()
                 .addComponent(estadisticasLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(energiaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(estructurasLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mapaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(turnoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         estadisticasLbl.getAccessibleContext().setAccessibleName("Estadísticas");
@@ -407,7 +460,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
                         .addComponent(mapaJugadorSecundarioPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(estadisticasPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(timerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -428,16 +481,17 @@ public class PantallaUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel chatLbl;
     private javax.swing.JTextArea comandos;
     private javax.swing.JLabel commandLbl;
+    private javax.swing.JLabel energiaLbl;
     private javax.swing.JLabel estadisticasLbl;
     private javax.swing.JPanel estadisticasPnl;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel estructurasLbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel mapaJugadorPrincipalPnl;
     private javax.swing.JPanel mapaJugadorSecundarioPnl;
+    private javax.swing.JLabel mapaLbl;
     private javax.swing.JTextArea salidaChat;
     private javax.swing.JLabel timerLbl;
+    private javax.swing.JLabel turnoLbl;
     // End of variables declaration//GEN-END:variables
 }

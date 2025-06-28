@@ -26,6 +26,9 @@ public class ClienteController {
         
         //aca llamamos/creamos a factory (se implemento así para implmenetar el commandFactory y que quede más ordenado)
         new CommandFactory(cliente, vista);
+        this.cliente.getThreadCliente().getManager().setControler(this);
+        this.cliente.getThreadCliente().getManager().setPantallaUsuario(vista);
+        cliente.getPlayer().addGameListener(vista);
     }
     
     private void configurarObservers() {

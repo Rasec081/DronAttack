@@ -10,6 +10,8 @@ import Estructuras.Estructuras;
 import java.awt.Point;
 import java.util.ArrayList;
 import Configuracion.ConfiguracionJuego;
+import Usuario.GameListener;
+import java.awt.List;
 
 /**
  *
@@ -22,7 +24,9 @@ public class Player {
     private Mapa mapa;
     private Mapa mapaEnemigo;
     private ArrayList<Estructuras> estructuras;
-
+    private final ArrayList<GameListener> listeners = new ArrayList<>();
+    
+    
     public Player(String nombre) {
         ConfiguracionJuego config = ConfiguracionJuego.getInstancia();
         this.nombre = nombre;
@@ -63,6 +67,7 @@ public class Player {
 
     public void setTurno(boolean turno) {
         this.turno = turno;
+        notificarTurno();
     }
 
     public ArrayList<Estructuras> getEstructuras() {
@@ -87,6 +92,8 @@ public class Player {
         if (energia <= 0){
             energia = 0;
         }
+        
+        notificarEnergia();
     }
     
     public void sumarEnergia(int cant){
@@ -96,16 +103,6 @@ public class Player {
         }
     }
     
-//    public boolean colocarEstructura(Estructuras estructura, Point pos) {
-//        //recibe la estructura ya creada y la posicion de esa estructura
-//        if (mapa.getCelda(pos.x, pos.y).estaVacia()) {
-//            mapa.setCelda(pos.x, pos.y, TipoCelda.ESTRUCTURA);
-//            //sugerencia de chat: estructura.setPosicion(pos); segun yo no porque ya la trae
-//            estructuras.add(estructura);
-//            return true;
-//        }
-//        return false; 
-//    }
     
     public void recibirAtaque (Point pos, int danio){
         if(mapa.getCelda(pos.x, pos.y).esEstructura()){
@@ -117,8 +114,9 @@ public class Player {
                     }
                     //TODO: si muere que se ponga como muerta, si queda viva que lo marque pero que aun no muere
                     
-                    //aca asumo que se llama a otra funcion
-                    //para trabajar con el patrocn observer
+                    notificar("Tu base fue atacada");
+                    notificarMapa();
+                    notificarEstructuras();
                 }
             }
         }    
@@ -164,5 +162,54 @@ public class Player {
     public boolean tieneCuatroEstructuras() {
         return estructuras.size() == 4;
         }
+    
+    public void addGameListener(GameListener listener) {
+        listeners.add(listener);
+    }
 
+    public void removeGameListener(GameListener listener) {
+        listeners.remove(listener);
+    }
+
+    private void notificarEnergia() {
+        for (GameListener l : listeners) {
+            l.energiaActualizada(this.energia);
+        }
+    }
+
+    private void notificarEstructuras() {
+        for (GameListener l : listeners) {
+            l.estructurasActualizadas(this.cantEstructurasVivas());
+        }
+    }
+
+    private void notificarMapa() {
+        for (GameListener l : listeners) {
+            l.mapaActualizado();
+        }
+    }
+
+    private void notificar(String mensaje) {
+        for (GameListener l : listeners) {
+            l.notificacion(mensaje);
+        }
+    }
+
+    private void notificarTurno() {
+        for (GameListener l : listeners) {
+            l.turnoActualizado(this.turno);
+        }
+    }
+
+    private void notificarImpactos(int cant) {
+        for (GameListener l : listeners) {
+            l.impactosActualizados(cant);
+        }
+    }
+
+    private void notificarZonas(int cant) {
+        for (GameListener l : listeners) {
+            l.zonasReveladasActualizadas(cant);
+        }
+    }
 }
