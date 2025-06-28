@@ -95,7 +95,15 @@ public class ThreadCliente extends Thread {
                     case CHAT_SERVER:
                         manager.sendMsj(mensaje);
                         break;
-                        
+                    case ACTUALIZAR_MAPA_ENEMIGO:
+                        manager.actualizarMapaEnemigo(mensaje);
+                        break;
+                    case ACTUALIZAR_MAPA_PROPIO:
+                        manager.actualizarMapaPropio(mensaje);
+                        break;
+                    case ENERGIA_EXTRA:
+                        manager.actualizarEnergia();
+                        break;
                     default:
                         throw new AssertionError();
                 }

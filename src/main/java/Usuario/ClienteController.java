@@ -28,6 +28,7 @@ public class ClienteController {
         new CommandFactory(cliente, vista);
         this.cliente.getThreadCliente().getManager().setControler(this);
         this.cliente.getThreadCliente().getManager().setPantallaUsuario(vista);
+        cliente.getPlayer().addGameListener(vista);
     }
     
     private void configurarObservers() {

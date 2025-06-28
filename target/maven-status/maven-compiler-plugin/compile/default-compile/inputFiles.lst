@@ -22,7 +22,7 @@ C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Comandos\SurrenderCommand.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Configuracion\ConfiguracionJuego.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Drones\BombDrone.java
-C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Drones\Drones.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Drones\DroneFactory.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Drones\ExplosiveDrone.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Drones\IDron.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Drones\MultishotDrone.java
@@ -40,7 +40,9 @@ C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Player\Player.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\ConexionServidorThread.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\GameManager.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\PaqueteMapas.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\Servidor.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Servidor\ThreadServidor.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Usuario\ClienteController.java
+C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Usuario\GameListener.java
 C:\Users\Daniel\OneDrive\Documents\@TEC\III semetre\POO\Proyecto 3 - DroneAttack\DronAttack\src\main\java\Usuario\PantallaUsuario.java

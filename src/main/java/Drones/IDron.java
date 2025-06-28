@@ -5,14 +5,17 @@
 package Drones;
 
 import Arena.Mapa;
+import java.awt.List;
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
  * @author Daniel
  */
 public interface IDron {
-    void atacar(Mapa mapaEnemigo); // define cómo ataca el dron
+    ArrayList <Point> atacar( Mapa mapaEnemigo); // define cómo ataca el dron
     int getEnergia();          // consumo energético
     Point getObjetivo();            // celda objetivo
+    String getNombre();
 }

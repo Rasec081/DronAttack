@@ -94,6 +94,10 @@ public class ThreadServidor extends Thread{
                         server.getGameManager().enviarMensajeChat(msj);
                         break;
                         
+                    case ATAQUE:
+                        server.getGameManager().manejarAtaque(msj);
+                        break;
+                        
                     default:
                         throw new AssertionError();
                 }

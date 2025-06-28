@@ -19,6 +19,11 @@ public enum TipoMensaje implements Serializable{
     TURNO,
     ATAQUE,
     CHAT_USER,
-    CHAT_SERVER
+    CHAT_SERVER,
+    NOTIFICACION,
+    ACTUALIZAR_MAPA_ENEMIGO,
+    ENERGIA_EXTRA,
+    RESULTADOS_ATAQUE,
+    ACTUALIZAR_MAPA_PROPIO
 
 }
