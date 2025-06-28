@@ -65,11 +65,16 @@ public class ClienteManager {
     public void actualizarMapaEnemigo(Mensaje mensaje){
         PaqueteMapas p = (PaqueteMapas) mensaje.getContenido();
          cliente.getPlayer().getMapaEnemigo().setCelda(p.getPunto().x, p.getPunto().y, p.getTipo());
+         //controler.getVista().actualizarMapaEnemigo(cliente.getPlayer().getMapaEnemigo());
+         
+         
     }
      public void actualizarMapaPropio(Mensaje mensaje){
          PaqueteMapas p = (PaqueteMapas) mensaje.getContenido();
          cliente.getPlayer().getMapa().setCelda(p.getPunto().x, p.getPunto().y, p.getTipo());
+         controler.getVista().actualizarMapaPropio(cliente.getPlayer().getMapa());
     }
+     
     public void actualizarEnergia(){
         cliente.getPlayer().sumarEnergia(30);
     }

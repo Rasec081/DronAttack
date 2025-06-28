@@ -244,9 +244,62 @@ public class PantallaUsuario extends javax.swing.JFrame implements GameListener{
         
     }
     
-    public void actualizarMapaEnemigo(Mapa mapa) {
-        // Implementar con niebla de guerra
+    public void actualizarMapaEnemigo(Mapa mapaEnemigoActualizado) {
+//                for (int y = 0; y < MAPA_ALTO; y++) {
+//                for (int x = 0; x < MAPA_ANCHO; x++) {
+//                    if (TipoCelda.VACIA == controlador.getJugador().getMapaEnemigo().getCelda(x, y).getTipo()) {
+//                        JLabel label = matrizMapaEnemigo[y][x];
+//                        String ruta = TipoCelda.NIEBLA.getRuta();
+//
+//                        try {
+//                            // Usa ClassLoader y elimina el "/" inicial si existe.
+//                            String rutaLimpia = ruta.startsWith("/") ? ruta.substring(1) : ruta;
+//                            URL url = ClassLoader.getSystemResource(rutaLimpia);
+//                            if (url == null) {
+//                                throw new Exception("No se encontró: " + rutaLimpia);
+//                            }
+//                            ImageIcon icono = new ImageIcon(url);
+//                            // Escala la imagen con un tamaño seguro.
+//                            int ancho = label.getWidth() > 0 ? label.getWidth() : 50;
+//                            int alto = label.getHeight() > 0 ? label.getHeight() : 50;
+//                            Image imagenEscalada = icono.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+//                            label.setIcon(new ImageIcon(imagenEscalada));
+//                            label.setText("");
+//                            label.setBackground(null);
+//                        } catch (Exception e) {
+//                            System.err.println("Error al cargar niebla: " + e.getMessage());
+//                            label.setIcon(null);
+//                            label.setBackground(Color.BLACK);
+//                            label.setText("?");
+//                        }
+//                    }else{
+//                        if((TipoCelda.ATACADO == controlador.getJugador().getMapa().getCelda(x, y).getTipo())
+//                                || TipoCelda.DESTRUIDA == controlador.getJugador().getMapa().getCelda(x, y).getTipo() ){
+//                            TipoCelda celda = controlador.getJugador().getMapa().getCelda(x, y).getTipo();
+//                            String ruta = celda.getRuta(); // ← obtiene algo como "/img/cuartel.png"
+//                            JLabel label = matrizMapaPropio[y][x];
+//
+//                            // Carga la imagen y la escala al tamaño del label
+//                            try {
+//                                ImageIcon icono = new ImageIcon(getClass().getResource(ruta));
+//                                Image imagenEscalada = icono.getImage().getScaledInstance(
+//                                        label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+//                                label.setIcon(new ImageIcon(imagenEscalada));
+//                                label.setText(""); // borra cualquier texto
+//                                label.setBackground(null); // opcional: quita color de fondo
+//                            } catch (Exception e) {
+//                                // Si la imagen no se encuentra, mostrar color por defecto
+//                                label.setIcon(null);
+//                                label.setBackground(Color.GRAY);
+//                                label.setText("?");
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+        
     }
+    
     
     public void actualizarEstadisticas(int energia, int turno, int estructurasActivas) {
         // Actualizar panel de estadísticas
