@@ -16,7 +16,7 @@ public class ChatCommand extends BaseCommand {
     private Cliente cliente;
 
     public ChatCommand(Cliente cliente) {
-        this.cliente = cliente;
+        this.cliente = cliente; 
     }
     
     @Override
